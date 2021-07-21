@@ -1,3 +1,25 @@
+# Sauti Africa Marketplace
+
+## Instructions
+
+### Task 1: Project Setup for work on specific/individual features
+
+* [] Clone this repository.
+- [] Create a new branch for the feature you are working on: git checkout -b `<feature-name>`.
+- [] Implement your code on your newly created `<feature-name>` branch, committing changes regularly.
+- [] Push commits: git push origin `<feature-name>`.
+* [] **RUN** `npm start` to start your application.
+
+### Reference Materials
+
+#### API Documentation for Testing
+* [GET] to `http://fakeapi.jsonparseronline.com/users` : returns a list of users
+* [GET] to `http://fakeapi.jsonparseronline.com/users/${id}` : returns a user by id, where ${id} can either be a hard-coded id (ie, 1, 3, etc.) or an interpolated id passed in from state.
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
