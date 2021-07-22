@@ -2,7 +2,7 @@
 
 ## Instructions
 
-### Task 1: Project Setup for work on specific/individual features
+### Task 1: Project Setup for work on specific/individual
 
 * [] Clone this repository.
 - [] Create a new branch for the feature you are working on: git checkout -b `<feature-name>`.
