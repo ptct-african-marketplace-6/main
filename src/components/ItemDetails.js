@@ -6,4 +6,4 @@ const ItemDetails = () => {
   )
 }
 
-export default ItemsDetails 
+export default ItemDetails;

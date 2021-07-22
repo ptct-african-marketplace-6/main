@@ -6,4 +6,4 @@ const ItemForm = () => {
   )
 }
 
-export default ItemsForm
+export default ItemForm;
