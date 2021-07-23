@@ -19,7 +19,7 @@ const Login = () => {
             // value={newUser.username}
             // onChange={changeHandler}
           />
-        </label>
+        </label>{' '}
         <label>Password&nbsp;
           <input 
             type="password"
@@ -29,10 +29,39 @@ const Login = () => {
             // onChange={changeHandler}
             // value={loginData.password}        
           />
-        </label>
+        </label>{' '}
+        <button>Login!</button>
       </form>
     </div>
   );
 };
 
 export default Login;
+
+/* User Object:
+{
+  id: integer
+  username: string
+  password: string 
+  email: string
+  isOwner: boolean
+}
+Item Object:
+{
+  id: integer
+  item_name: string
+  location: string
+  quantity: integer
+  price: float
+  description: string
+  user_id: integer // this references the id in the user table
+} */
+
+/* These are your ENDPOINTS and we list what each will return:
+Users
+[POST] https://team-amazing.herokuapp.com/api/auth/register
+    returns user object
+[POST] https://team-amazing.herokuapp.com/api/auth/login
+    returns token, user object
+Items
+*/

@@ -28,11 +28,11 @@ function App() {
       <nav>
         <h1>Market Place</h1>
         <div className="nav-links">
-          <Link to="/">Home</Link>
-          <Link to="/items-list">Shop</Link>
-          <Link to="/item-form">Sell</Link>
-          <Link to="/log-in">Log In</Link>
-          <Link to="/sign-up">Sign Up</Link>
+          <Link to="/"><button>Home</button></Link>{' '}
+          <Link to="/items-list"><button>Shop</button></Link>{' '}
+          <Link to="/item-form"><button>Sell</button></Link>{' '}
+          <Link to="/log-in"><button>Log In</button></Link>{' '}
+          <Link to="/sign-up"><button>Sign Up</button></Link>
 
         </div>
       </nav>

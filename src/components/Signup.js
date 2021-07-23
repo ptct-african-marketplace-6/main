@@ -1,123 +1,176 @@
 import axios from 'axios';
-import React,{ useState } from 'react'
+import React from 'react';
+import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Button } from 'reactstrap'
-import 'bootstrap/dist/css/bootstrap.css'
+import * as yup from 'yup';
+import axiosWithAuth from '../common/helpers/axiosWithAuth';
 
-const initialState = {
-  username: '',
-  password: '',
-  email: '',
-  isOwner: false
-}
+function SignUp(props) {
 
-const initialErrorState = {
-  error_msg: '',
-  error_visible: false
-}
+  const { push } = useHistory();
 
-const SignUp = () => {
+  const [disabledButton, setDisabledButton] = useState(true)
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    password: '',
+    owner: false,
+  })
 
-  const [newUser, setNewUser] = useState(initialState);
-  const [errorData, setErrorData] = useState(initialErrorState);
-  const history = useHistory();
+  const [errors, setErrors] = useState({
+    name: '',
+    email: '',
+    password: '',
+    owner: '',
+  })
 
-  const changeHandler = (e) => {
-    setNewUser({
-      ...newUser,
-      [e.target.name]: e.target.value
-    });
-  };
+  const formSchema = yup.object().shape({
+    name: yup
+      .string()
+      .required('Pleae include your name.')
+      .min(6, 'Name must be at least 6 characters long'),
+    email: yup
+      .string()
+      .email('Please include your email address.')
+      .required('Must include email address.'),
+    password: yup
+      .string()
+      .required('Password is Required')
+      .min(6, 'Passwords must be at least 6 characters long.'),
+    owner: yup.boolean(),
+  })
 
-  const submitForm = (e) => {
-    e.preventDefault();
-    // console.log("form submitted: ", newUser);
-    let usernameLength = newUser.username.length;
-    let passwordLength = newUser.password.length;
-    let emailNumberLength = newUser.email.length;
-
-    if (usernameLength < 4) {
-      setErrorData({
-        ...errorData,
-        error_visible:true,
-        error_msg:"username must be at least 4 charachers"
-      })
-    }
-    else if (passwordLength < 6) {
-      setErrorData({
-        ...errorData,
-        error_visible:true,
-        error_msg:"password must be at least 6 characters"
-      })
-    }
-    else if (emailNumberLength < 11) {
-      setErrorData({
-        ...errorData,
-        error_visible:true,
-        error_msg: "invalid email address"
-      });
-    }
-    else {
-      setErrorData({
-        ...errorData,
-        error_visible:false,
-        error_msg: ''
-      });
-      axios.post("https://saudi-market-bw.herokuapp.com/api/auth/register", newUser)
-      .then((res) => {
-        // console.log(res.data);
-        localStorage.setItem('username', newUser.username);
-        setNewUser({
-          username: newUser.username
-        })
-        history.push('/Login');
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-    }    
+  const setFormErrors = (name, value) => {
+    yup
+      .reach(formSchema, name)
+      .validate(value)
+      .then(() => setErrors({ ...errors, [name]: '' }))
+      .catch((err) => setErrors({ ...errors, [name]: err.errors[0] }))
   }
 
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    alert(JSON.stringify(formData))
+    axiosWithAuth().post('auth/register', formData)
+      .then(res => {
+        console.log(res)
+        localStorage.setItem('token', formData.password);
+        setFormData({
+          name: formData.name
+        })
+        push('/items-list')
+      })
+      .catch(err => {
+        console.log({err})
+      })
+  }
+
+  const handleChange = (e) => {
+    const { name, type } = e.target
+    const valueToUse = type === 'checkbox' ? 'checked' : 'value'
+    setFormData((prev) => {
+      return {
+        ...formData,
+        [e.target.name]: e.target[valueToUse],
+      }
+    })
+
+    setFormErrors(name, e.target[valueToUse])
+  }
+
+  useEffect(() => {
+    formSchema.isValid(formData).then((valid) => setDisabledButton(!valid))
+  })
+
   return (
-    <div>
-      <form>
-        <label>Username&nbsp;
-          <input
-            type="text"
-            name="username"
-            id="username"
-            className="signUpInput"
-            placeholder="Username"
-            value={newUser.username}
-            onChange={changeHandler}
-          />
-        </label>&nbsp;&nbsp;
+    <>
+      <div class='container-fluid col-md-auto'>
+        <div className='App'>
+          <form
+            onSubmit={handleSubmit}
+            className='d-flex flex-column container-fluid col-md-auto'
+          >
+            <div className='row'>
+              <label>
+                Name
+                <input
+                  name='name'
+                  type='text'
+                  value={formData.name}
+                  onChange={handleChange}
+                />
+              </label>
+            </div>
 
-        <label>Email&nbsp;
-          <input
-            name="phone"
-            type="text"
-            id="phone"
-            placeholder="email@email.com"
-            // value={newUser.phone}
-            // onChange={changeHandler}
-          />
-        </label>&nbsp;&nbsp;
+            <div className='row'>
+              <label>
+                Email
+                <input
+                  name='email'
+                  type='text'
+                  value={formData.email}
+                  onChange={handleChange}
+                />
+              </label>
+            </div>
 
-        <label>Password&nbsp;
-        <input
-            type="password"
-            name="password"
-            id="password"
-            placeholder="Password"
-            // value={newUser.password}
-            // onChange={changeHandler}
-        />
-        </label>
-      </form><br/>
-      <button>Register!</button>
-    </div>
+            <div className='row'>
+              <label>
+                Password
+                <input
+                  name='password'
+                  type='password'
+                  value={formData.password}
+                  onChange={handleChange}
+                />
+              </label>
+            </div>
+
+            <div className='row'>
+              <label>
+                Owner?
+                <input
+                  name='owner'
+                  type='checkbox'
+                  checked={formData.owner}
+                  onChange={handleChange}
+                />
+              </label>
+            </div>
+
+            <div className='row'>
+              <button disabled={disabledButton}>Submit!</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </>
   )
 }
 
 export default SignUp
+
+/* https://drive.google.com/drive/folders/11iiMC9DiRtoqz77CTCeJPpR8zmiALyw0
+User Object:
+{
+  id: integer
+  username: string
+  password: string 
+  email: string
+  isOwner: boolean
+}
+Item Object:
+{
+  id: integer
+  item_name: string
+  location: string
+  quantity: integer
+  price: float
+  description: string
+  user_id: integer // this references the id in the user table
+} 
+These are your ENDPOINTS and we list what each will return:
+Users
+POST https://saudi-market-app.herokuapp.com/api/auth/login
+POST https://saudi-market-app.herokuapp.com/api/auth/register
+ */
