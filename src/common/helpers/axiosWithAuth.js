@@ -7,7 +7,7 @@ const axiosWithAuth = () => {
     baseURL: "https://saudi-market-app.herokuapp.com/api/",
     headers: {
       "Content-Type": "application/json",
-      authorization: `${token}` 
+      Authorization: `${token}` 
     }
   });
 }
