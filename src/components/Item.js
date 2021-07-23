@@ -5,7 +5,7 @@ const Item = (props) => {
   const { items } = props
   const { itemID } = useParams()
 
-  const item = items.find(item => item.id == itemID)
+  const item = items.find(item => item.id === itemID)
 
   if(!item) {
     return <div>Loading...</div>
