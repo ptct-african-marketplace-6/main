@@ -79,7 +79,44 @@ const SignUp = () => {
   }
 
   return (
-    <div></div>
+    <div>
+      <form>
+        <label>Username&nbsp;
+          <input
+            type="text"
+            name="username"
+            id="username"
+            className="signUpInput"
+            placeholder="Username"
+            value={newUser.username}
+            onChange={changeHandler}
+          />
+        </label>&nbsp;&nbsp;
+
+        <label>Email&nbsp;
+          <input
+            name="phone"
+            type="text"
+            id="phone"
+            placeholder="email@email.com"
+            // value={newUser.phone}
+            // onChange={changeHandler}
+          />
+        </label>&nbsp;&nbsp;
+
+        <label>Password&nbsp;
+        <input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Password"
+            // value={newUser.password}
+            // onChange={changeHandler}
+        />
+        </label>
+      </form><br/>
+      <button>Register!</button>
+    </div>
   )
 }
 
