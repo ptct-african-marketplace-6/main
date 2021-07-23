@@ -1,6 +1,6 @@
 export default [
   {
-    name: 'Reel Viewer',
+    item_name: 'Reel Viewer',
     id: 0,
     price: 29.95,
     imageUrl:
@@ -11,7 +11,7 @@ export default [
       'Most of our items are in stock and will ship quickly. Orders for in-stock items placed before 5pm ET Monday through Friday, excluding Federal holidays, will ship in the US: ECONOMY SHIPPING: within 8 days, arriving no later than the 9th business day after the order was placed. STANDARD SHIPPING: within 4 days, arriving 5 business days after the order was placed. PREFERRED SHIPPING: within 2 days, arriving 3 business days after the order was placed. EXPEDITED SHIPPING: within 1 day, arriving 2 business days after the order was placed. EXPRESS SHIPPING: will ship the same day and arrive 1 business day later.'
   },
   {
-    name: 'Mathematical Glasses - Set of 4',
+    item_name: 'Mathematical Glasses - Set of 4',
     id: 1,
     price: 38.0,
     imageUrl:
@@ -22,7 +22,7 @@ export default [
       'Most of our items are in stock and will ship quickly. Orders for in-stock items placed before 5pm ET Monday through Friday, excluding Federal holidays, will ship in the US: ECONOMY SHIPPING: within 8 days, arriving no later than the 9th business day after the order was placed. STANDARD SHIPPING: within 4 days, arriving 5 business days after the order was placed. PREFERRED SHIPPING: within 2 days, arriving 3 business days after the order was placed. EXPEDITED SHIPPING: within 1 day, arriving 2 business days after the order was placed. EXPRESS SHIPPING: will ship the same day and arrive 1 business day later.'
   },
   {
-    name: 'Shakespearean Insults Chart',
+    item_name: 'Shakespearean Insults Chart',
     id: 2,
     price: 25.49,
     imageUrl:
@@ -33,7 +33,7 @@ export default [
       'Most of our items are in stock and will ship quickly. Orders for in-stock items placed before 5pm ET Monday through Friday, excluding Federal holidays, will ship in the US: ECONOMY SHIPPING: within 8 days, arriving no later than the 9th business day after the order was placed. STANDARD SHIPPING: within 4 days, arriving 5 business days after the order was placed. PREFERRED SHIPPING: within 2 days, arriving 3 business days after the order was placed. EXPEDITED SHIPPING: within 1 day, arriving 2 business days after the order was placed. EXPRESS SHIPPING: will ship the same day and arrive 1 business day later.'
   },
   {
-    name: 'Yoga Joes',
+    item_name: 'Yoga Joes',
     id: 3,
     price: 25.0,
     imageUrl:
@@ -44,7 +44,7 @@ export default [
       'Most of our items are in stock and will ship quickly. Orders for in-stock items placed before 5pm ET Monday through Friday, excluding Federal holidays, will ship in the US: ECONOMY SHIPPING: within 8 days, arriving no later than the 9th business day after the order was placed. STANDARD SHIPPING: within 4 days, arriving 5 business days after the order was placed. PREFERRED SHIPPING: within 2 days, arriving 3 business days after the order was placed. EXPEDITED SHIPPING: within 1 day, arriving 2 business days after the order was placed. EXPRESS SHIPPING: will ship the same day and arrive 1 business day later.'
   },
   {
-    name: 'Dinosaur Taco Holders',
+    item_name: 'Dinosaur Taco Holders',
     id: 4,
     price: 12.0,
     imageUrl:
@@ -55,7 +55,7 @@ export default [
       'Most of our items are in stock and will ship quickly. Orders for in-stock items placed before 5pm ET Monday through Friday, excluding Federal holidays, will ship in the US: ECONOMY SHIPPING: within 8 days, arriving no later than the 9th business day after the order was placed. STANDARD SHIPPING: within 4 days, arriving 5 business days after the order was placed. PREFERRED SHIPPING: within 2 days, arriving 3 business days after the order was placed. EXPEDITED SHIPPING: within 1 day, arriving 2 business days after the order was placed. EXPRESS SHIPPING: will ship the same day and arrive 1 business day later.'
   },
   {
-    name: 'Color Changing Cinema Lightbox',
+    item_name: 'Color Changing Cinema Lightbox',
     id: 5,
     price: 49.95,
     imageUrl:
@@ -66,7 +66,7 @@ export default [
       'Most of our items are in stock and will ship quickly. Orders for in-stock items placed before 5pm ET Monday through Friday, excluding Federal holidays, will ship in the US: ECONOMY SHIPPING: within 8 days, arriving no later than the 9th business day after the order was placed. STANDARD SHIPPING: within 4 days, arriving 5 business days after the order was placed. PREFERRED SHIPPING: within 2 days, arriving 3 business days after the order was placed. EXPEDITED SHIPPING: within 1 day, arriving 2 business days after the order was placed. EXPRESS SHIPPING: will ship the same day and arrive 1 business day later.'
   },
   {
-    name: 'Avocado Tree Starter Kit - Set of 3',
+    item_name: 'Avocado Tree Starter Kit - Set of 3',
     id: 6,
     price: 20.0,
     imageUrl:
@@ -77,7 +77,7 @@ export default [
       'Most of our items are in stock and will ship quickly. Orders for in-stock items placed before 5pm ET Monday through Friday, excluding Federal holidays, will ship in the US: ECONOMY SHIPPING: within 8 days, arriving no later than the 9th business day after the order was placed. STANDARD SHIPPING: within 4 days, arriving 5 business days after the order was placed. PREFERRED SHIPPING: within 2 days, arriving 3 business days after the order was placed. EXPEDITED SHIPPING: within 1 day, arriving 2 business days after the order was placed. EXPRESS SHIPPING: will ship the same day and arrive 1 business day later.'
   },
   {
-    name: 'Hero Bookend',
+    item_name: 'Hero Bookend',
     id: 7,
     price: 19.95,
     imageUrl:
@@ -88,7 +88,7 @@ export default [
       'Most of our items are in stock and will ship quickly. Orders for in-stock items placed before 5pm ET Monday through Friday, excluding Federal holidays, will ship in the US: ECONOMY SHIPPING: within 8 days, arriving no later than the 9th business day after the order was placed. STANDARD SHIPPING: within 4 days, arriving 5 business days after the order was placed. PREFERRED SHIPPING: within 2 days, arriving 3 business days after the order was placed. EXPEDITED SHIPPING: within 1 day, arriving 2 business days after the order was placed. EXPRESS SHIPPING: will ship the same day and arrive 1 business day later.'
   },
   {
-    name: 'Fishing Pole Campfire Roaster',
+    item_name: 'Fishing Pole Campfire Roaster',
     id: 8,
     price: 29.95,
     imageUrl:
@@ -99,7 +99,7 @@ export default [
       'Most of our items are in stock and will ship quickly. Orders for in-stock items placed before 5pm ET Monday through Friday, excluding Federal holidays, will ship in the US: ECONOMY SHIPPING: within 8 days, arriving no later than the 9th business day after the order was placed. STANDARD SHIPPING: within 4 days, arriving 5 business days after the order was placed. PREFERRED SHIPPING: within 2 days, arriving 3 business days after the order was placed. EXPEDITED SHIPPING: within 1 day, arriving 2 business days after the order was placed. EXPRESS SHIPPING: will ship the same day and arrive 1 business day later.'
   },
   {
-    name: 'Elwood the Unicorn Cereal Bowl',
+    item_name: 'Elwood the Unicorn Cereal Bowl',
     id: 9,
     price: 39.95,
     imageUrl:
@@ -110,7 +110,7 @@ export default [
       'Most of our items are in stock and will ship quickly. Orders for in-stock items placed before 5pm ET Monday through Friday, excluding Federal holidays, will ship in the US: ECONOMY SHIPPING: within 8 days, arriving no later than the 9th business day after the order was placed. STANDARD SHIPPING: within 4 days, arriving 5 business days after the order was placed. PREFERRED SHIPPING: within 2 days, arriving 3 business days after the order was placed. EXPEDITED SHIPPING: within 1 day, arriving 2 business days after the order was placed. EXPRESS SHIPPING: will ship the same day and arrive 1 business day later.'
   },
   {
-    name: 'Spotted Wellies Garden Ducks',
+    item_name: 'Spotted Wellies Garden Ducks',
     id: 10,
     price: 19.99,
     imageUrl:
@@ -121,7 +121,7 @@ export default [
       'Most of our items are in stock and will ship quickly. Orders for in-stock items placed before 5pm ET Monday through Friday, excluding Federal holidays, will ship in the US: ECONOMY SHIPPING: within 8 days, arriving no later than the 9th business day after the order was placed. STANDARD SHIPPING: within 4 days, arriving 5 business days after the order was placed. PREFERRED SHIPPING: within 2 days, arriving 3 business days after the order was placed. EXPEDITED SHIPPING: within 1 day, arriving 2 business days after the order was placed. EXPRESS SHIPPING: will ship the same day and arrive 1 business day later.'
   },
   {
-    name: 'Eye Glasses Holder',
+    item_name: 'Eye Glasses Holder',
     id: 11,
     price: 15.49,
     imageUrl:

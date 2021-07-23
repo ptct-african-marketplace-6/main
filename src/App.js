@@ -6,6 +6,7 @@ import Item from './components/Item'
 import Home from './components/Home'
 import Login from './components/Login'
 import Signup from './components/Signup'
+import ItemForm from './components/ItemForm'
 
 import data from './data'
 
@@ -26,9 +27,10 @@ function App() {
 
       <nav>
         <h1>Market Place</h1>
-        <div class="nav-links">
+        <div className="nav-links">
           <Link to="/">Home</Link>
           <Link to="/items-list">Shop</Link>
+          <Link to="/item-form">Sell</Link>
           <Link to="/log-in">Log In</Link>
           <Link to="/sign-up">Sign Up</Link>
 
@@ -40,11 +42,14 @@ function App() {
         <Route exact path="/">
           <Home />
         </Route>
-        <Route path="/items-list">
+        <Route path="/items-list/:itemID">
           <Item items={data}/>
         </Route>
         <Route path="/items-list">
           <ItemsList items={data}/>
+        </Route>
+        <Route path="/item-form">
+          <ItemForm />
         </Route>
         <Route path="/log-in">
           <Login />
