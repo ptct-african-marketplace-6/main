@@ -33,18 +33,24 @@ export const itemReducer = (state = initialState, action) => {
         items: [...state.items, newItem]
       }
     case EDIT_ITEM:
-      const editItem = {
+      // const editItem = {
+      //   item_name: action.payload.item_name,
+      //   location: action.payload.location,
+      //   quantity: action.payload.quantity,
+      //   price: action.payload.price,
+      //   description: action.payload.description,
+      // }
+      return {
+        
+        // This code may need more work ... this is just a templated version to begin with
+        ...state.item,
         item_name: action.payload.item_name,
         location: action.payload.location,
         quantity: action.payload.quantity,
         price: action.payload.price,
-        description: action.payload.description,
-      }
-      return {
+        description: action.payload.description
         
-        // This code may need more work ... this is just a templated version to begin with
-
-        items: [...state.items, editItem]
+        // items: [...state.items, editItem]
       }
     case DELETE_ITEM:
       return {
