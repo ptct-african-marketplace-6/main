@@ -1,17 +1,127 @@
-// login page will go here
-
 import React from 'react'
-import { useHistory } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import * as yup from 'yup'
 
-const Login = () => {
+function Login(props) {
+  const [disabledButton, setDisabledButton] = useState(true)
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    pass: '',
+    owner: false,
+  })
+
+  const [errors, setErrors] = useState({
+    name: '',
+    email: '',
+    pass: '',
+    owner: '',
+  })
+
+  const formSchema = yup.object().shape({
+    name: yup.string().required('Pleae include your name.'),
+    email: yup.string().required('Must include email address.'),
+    pass: yup.string().required('Password is Required'),
+    owner: yup.boolean(),
+  })
+
+  const setFormErrors = (name, value) => {
+    yup
+      .reach(formSchema, name)
+      .validate(value)
+      .then(() => setErrors({ ...errors, [name]: '' }))
+      .catch((err) => setErrors({ ...errors, [name]: err.errors[0] }))
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    alert(
+      `we should submit an axios request now using ${JSON.stringify(
+        formData
+      )} but the endpoint is not working`
+    )
+  }
+
+  const handleChange = (e) => {
+    const { name, type } = e.target
+    const valueToUse = type === 'checkbox' ? 'checked' : 'value'
+    setFormData((prev) => {
+      return {
+        ...formData,
+        [e.target.name]: e.target[valueToUse],
+      }
+    })
+
+    setFormErrors(name, e.target[valueToUse])
+  }
+
+  useEffect(() => {
+    formSchema.isValid(formData).then((valid) => setDisabledButton(!valid))
+  })
+
   return (
-    <div>
-      <h1>Login Page</h1>
-      <form>
-        {/* <input />
-        <input /> */}
-      </form>
-    </div>
+    <>
+      <div class='container-fluid col-md-auto'>
+        <div className='App'>
+          <form
+            onSubmit={handleSubmit}
+            className='d-flex flex-column container-fluid col-md-auto'
+          >
+            <div className='row'>
+              <label>
+                Name
+                <input
+                  name='name'
+                  type='text'
+                  value={formData.name}
+                  onChange={handleChange}
+                />
+              </label>
+            </div>
+
+            <div className='row'>
+              <label>
+                Email
+                <input
+                  name='email'
+                  type='text'
+                  value={formData.email}
+                  onChange={handleChange}
+                />
+              </label>
+            </div>
+
+            <div className='row'>
+              <label>
+                Password
+                <input
+                  name='pass'
+                  type='text'
+                  value={formData.pass}
+                  onChange={handleChange}
+                />
+              </label>
+            </div>
+
+            <div className='row'>
+              <label>
+                Owner?
+                <input
+                  name='owner'
+                  type='checkbox'
+                  checked={formData.owner}
+                  onChange={handleChange}
+                />
+              </label>
+            </div>
+
+            <div className='row'>
+              <button disabled={disabledButton}>Submit!</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </>
   )
 }
 

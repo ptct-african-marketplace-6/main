@@ -44,7 +44,9 @@ function SignUp(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    alert(JSON.stringify(formData))
+    alert(
+      `we should submit an axios request now using ${JSON.stringify(formData)}`
+    )
   }
 
   const handleChange = (e) => {
