@@ -22,14 +22,14 @@ export const fetchItems = () => (dispatch) => {
     })
 }
 
-const addItem = () => {
+export const addItem = () => {
   return({type: ADD_ITEM});
 }
 
-const editItem = (id) => {
+export const editItem = (id) => {
   return ({type: EDIT_ITEM, payload: id});
 }
 
-const deleteItem = (id) => {
+export const deleteItem = (id) => {
   return ({type: DELETE_ITEM, payload: id})
 }
