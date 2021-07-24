@@ -16,7 +16,6 @@ function SignUp(props) {
     name: '',
     email: '',
     pass: '',
-    owner: '',
   })
 
   const formSchema = yup.object().shape({
@@ -32,7 +31,6 @@ function SignUp(props) {
       .string()
       .required('Password is Required')
       .min(6, 'Passwords must be at least 6 characters long.'),
-    owner: yup.boolean(),
   })
 
   const setFormErrors = (name, value) => {
@@ -68,68 +66,71 @@ function SignUp(props) {
   })
 
   return (
-    <>
-      <div class='container-fluid col-md-auto'>
-        <div className='App'>
-          <form
-            onSubmit={handleSubmit}
-            className='d-flex flex-column container-fluid col-md-auto'
+    <body className='text-center'>
+      <main className='form-signin text-center'>
+        <form className='text-center' onSubmit={handleSubmit}>
+          <h1 class='h3 mb-3 fw-normal'>
+            Welcome back! Please access your account
+          </h1>
+          <div className='form-floating'>
+            <input
+              name='name'
+              className='form-control'
+              id='floatingInput'
+              placeholder='John Smith'
+              type='text'
+              value={formData.name}
+              onChange={handleChange}
+            />
+            <label for='floatingInput'>Name</label>
+          </div>
+
+          <div className='form-floating'>
+            <input
+              name='email'
+              id='floatingEmail'
+              type='text'
+              placeholder='john.smith@gmail.com'
+              className='form-control'
+              value={formData.email}
+              onChange={handleChange}
+            />
+            <label for='floatingEmail'>Email</label>
+          </div>
+
+          <div className='form-floating'>
+            <input
+              name='pass'
+              type='text'
+              className='form-control'
+              placeholder='******'
+              value={formData.pass}
+              id='floatingPassword'
+              onChange={handleChange}
+            />
+            <label for='floatingPassword'>Password</label>
+          </div>
+
+          <div className='checkbox mb-3 row'>
+            <input
+              name='owner'
+              id='floatingOwner'
+              type='checkbox'
+              checked={formData.owner}
+              onChange={handleChange}
+            />
+            <label for='floatingOwner'>Owner?</label>
+          </div>
+
+          <button
+            className='w-100 btn btn-lg btn-primary'
+            disabled={disabledButton}
           >
-            <div className='row'>
-              <label>
-                Name
-                <input
-                  name='name'
-                  type='text'
-                  value={formData.name}
-                  onChange={handleChange}
-                />
-              </label>
-            </div>
-
-            <div className='row'>
-              <label>
-                Email
-                <input
-                  name='email'
-                  type='text'
-                  value={formData.email}
-                  onChange={handleChange}
-                />
-              </label>
-            </div>
-
-            <div className='row'>
-              <label>
-                Password
-                <input
-                  name='pass'
-                  type='text'
-                  value={formData.pass}
-                  onChange={handleChange}
-                />
-              </label>
-            </div>
-
-            <div className='row'>
-              <label>
-                Owner?
-                <input
-                  name='owner'
-                  type='checkbox'
-                  checked={formData.owner}
-                  onChange={handleChange}
-                />
-              </label>
-            </div>
-
-            <div className='row'>
-              <button disabled={disabledButton}>Submit!</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </>
+            Submit!
+          </button>
+        </form>
+      </main>
+    </body>
   )
 }
 
