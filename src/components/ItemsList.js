@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import { Card } from 'react-bootstrap';
 
 const ItemsList = (props) => {
 const { items } = props
@@ -8,6 +9,7 @@ const { pathname } = useLocation()
   return (
     <div>
       {items.map(item => (
+        <Card>
         <div className="item-card" key={item.id}>
           <Link to={`${pathname}/${item.id}`}>
 
@@ -19,6 +21,7 @@ const { pathname } = useLocation()
           <p>Quantity: {item.quantity}</p>
           <p>Description: {item.description}</p>
         </div>
+        </Card>
       ))}
     </div>
   )
