@@ -1,42 +1,153 @@
-// login page will go here
-
-import React from "react";
+import React, { useState, useEffect} from "react";
 import { useHistory } from "react-router-dom";
+import * as yup from 'yup'
+import axiosWithAuth from "../common/helpers/axiosWithAuth";
 
-const Login = () => {
+function Login(props) {
+  const { push } = useHistory();
+
+  const [disabledButton, setDisabledButton] = useState(true)
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    password: '',
+    owner: false,
+  })
+
+  const [errors, setErrors] = useState({
+    name: '',
+    email: '',
+    password: '',
+    owner: '',
+  })
+
+  const formSchema = yup.object().shape({
+    name: yup.string().required('Pleae include your name.'),
+    email: yup.string().required('Must include email address.'),
+    password: yup.string().required('Password is Required'),
+    owner: yup.boolean(),
+  })
+
+  const setFormErrors = (name, value) => {
+    yup
+      .reach(formSchema, name)
+      .validate(value)
+      .then(() => setErrors({ ...errors, [name]: '' }))
+      .catch((err) => setErrors({ ...errors, [name]: err.errors[0] }))
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    alert(
+      `we should submit an axios request now using ${JSON.stringify(
+        formData
+      )} but the endpoint is not working`
+    )
+    axiosWithAuth().post("auth/login", formData)
+    .then((res) => {
+      console.log("submitted login successfully:", res)
+      if ((!localStorage.getItem("name")) || (localStorage.getItem("name") !== formData.name)) {
+        localStorage.setItem("username", formData.username);
+        setFormData({
+          username: formData.username
+        });
+        push("/items-list");
+      }
+      else {
+        push("/");
+      }
+    })
+    .catch((err) => {
+      console.error("something went wrong with post request: ", err);
+    })
+  }
+
+  const handleChange = (e) => {
+    const { name, type } = e.target
+    const valueToUse = type === 'checkbox' ? 'checked' : 'value'
+    setFormData((prev) => {
+      return {
+        ...formData,
+        [e.target.name]: e.target[valueToUse],
+      }
+    })
+
+    setFormErrors(name, e.target[valueToUse])
+  }
+
+  useEffect(() => {
+    formSchema.isValid(formData).then((valid) => setDisabledButton(!valid))
+  })
 
   return (
-    <div>
-      <h1>Login Page</h1>
-      <form >
-        <label>Username&nbsp;
-          <input 
-            type="text"
-            name="username"
-            id="username"
-            // className="signUpInput"
-            placeholder="Example: help_me"
-            // value={newUser.username}
-            // onChange={changeHandler}
-          />
-        </label>{' '}
-        <label>Password&nbsp;
-          <input 
-            type="password"
-            id="password"
-            name="password"
-            placeholder="your password"
-            // onChange={changeHandler}
-            // value={loginData.password}        
-          />
-        </label>{' '}
-        <button>Login!</button>
-      </form>
-    </div>
-  );
-};
+    <>
+      <div class='container-fluid col-md-auto'>
+        <div className='App'>
+          <form
+            onSubmit={handleSubmit}
+            className='d-flex flex-column container-fluid col-md-auto'
+          >
+            <div className='row'>
+              <label>
+                Name
+                <input
+                  name='name'
+                  type='text'
+                  value={formData.name}
+                  onChange={handleChange}
+                />
+              </label>
+            </div>
 
-export default Login;
+            <div className='row'>
+              <label>
+                Email
+                <input
+                  name='email'
+                  type='text'
+                  value={formData.email}
+                  onChange={handleChange}
+                />
+              </label>
+            </div>
+
+            <div className='row'>
+              <label>
+                Password
+                <input
+                  name='password'
+                  type='password'
+                  value={formData.password}
+                  onChange={handleChange}
+                />
+              </label>
+            </div>
+
+            <div className='row'>
+              <label>
+                Owner?
+                <input
+                  name='owner'
+                  type='checkbox'
+                  checked={formData.owner}
+                  onChange={handleChange}
+                />
+              </label>
+            </div>
+
+            <div className='row'>
+              <button disabled={disabledButton}>Submit!</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </>
+  )
+}
+
+export default Login
+
+//https://drive.google.com/drive/folders/11iiMC9DiRtoqz77CTCeJPpR8zmiALyw0
 
 /* User Object:
 {
