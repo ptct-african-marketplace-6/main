@@ -11,21 +11,21 @@ function SignUp(props) {
 
   const [disabledButton, setDisabledButton] = useState(true)
   const [formData, setFormData] = useState({
-    name: '',
+    username: '',
     email: '',
     password: '',
     owner: false,
   })
 
   const [errors, setErrors] = useState({
-    name: '',
+    username: '',
     email: '',
     password: '',
     owner: '',
   })
 
   const formSchema = yup.object().shape({
-    name: yup
+    username: yup
       .string()
       .required('Please include your name.')
       .min(6, 'Name must be at least 6 characters long'),
@@ -92,19 +92,19 @@ function SignUp(props) {
           >
             <div className='row'>
               <label>
-                Name
+                Username&nbsp;
                 <input
-                  name='name'
+                  name='username'
                   type='text'
-                  value={formData.name}
+                  value={formData.username}
                   onChange={handleChange}
                 />
               </label>
-            </div>
+            </div><br/>
 
             <div className='row'>
               <label>
-                Email
+                Email&nbsp;
                 <input
                   name='email'
                   type='text'
@@ -112,11 +112,11 @@ function SignUp(props) {
                   onChange={handleChange}
                 />
               </label>
-            </div>
+            </div><br/>
 
             <div className='row'>
               <label>
-                Password
+                Password&nbsp;
                 <input
                   name='password'
                   type='password'
@@ -124,11 +124,11 @@ function SignUp(props) {
                   onChange={handleChange}
                 />
               </label>
-            </div>
+            </div><br/>
 
             <div className='row'>
               <label>
-                Owner?
+                Owner?&nbsp;
                 <input
                   name='owner'
                   type='checkbox'
@@ -136,7 +136,7 @@ function SignUp(props) {
                   onChange={handleChange}
                 />
               </label>
-            </div>
+            </div><br/>
 
             <div className='row'>
               <button disabled={disabledButton}>Submit!</button>

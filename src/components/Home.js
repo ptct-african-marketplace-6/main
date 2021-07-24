@@ -11,7 +11,7 @@ const Home = () => {
 
   return (
     <div className="home-wrapper">
-      <a onClick={routeToShop} className="btn">Shop Now!</a>
+      <a onClick={routeToShop} className="btn"><h3>Shop Now!</h3></a>
     </div>
   )
 }

@@ -9,23 +9,17 @@ function Login(props) {
   const [disabledButton, setDisabledButton] = useState(true)
   const [formData, setFormData] = useState({
     name: '',
-    email: '',
     password: '',
-    owner: false,
   })
 
   const [errors, setErrors] = useState({
     name: '',
-    email: '',
     password: '',
-    owner: '',
   })
 
   const formSchema = yup.object().shape({
     name: yup.string().required('Pleae include your name.'),
-    email: yup.string().required('Must include email address.'),
     password: yup.string().required('Password is Required'),
-    owner: yup.boolean(),
   })
 
   const setFormErrors = (name, value) => {
@@ -38,11 +32,11 @@ function Login(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    alert(
-      `we should submit an axios request now using ${JSON.stringify(
-        formData
-      )} but the endpoint is not working`
-    )
+    // alert(
+    //   `we should submit an axios request now using ${JSON.stringify(
+    //     formData
+    //   )} but the endpoint is not working`
+    // )
     axiosWithAuth().post("auth/login", formData)
     .then((res) => {
       console.log("submitted login successfully:", res)
@@ -81,7 +75,7 @@ function Login(props) {
 
   return (
     <>
-      <div class='container-fluid col-md-auto'>
+      <div className='container-fluid col-md-auto'>
         <div className='App'>
           <form
             onSubmit={handleSubmit}
@@ -89,7 +83,7 @@ function Login(props) {
           >
             <div className='row'>
               <label>
-                Name
+                Username&nbsp;
                 <input
                   name='name'
                   type='text'
@@ -98,22 +92,10 @@ function Login(props) {
                 />
               </label>
             </div>
-
+            <br/>
             <div className='row'>
               <label>
-                Email
-                <input
-                  name='email'
-                  type='text'
-                  value={formData.email}
-                  onChange={handleChange}
-                />
-              </label>
-            </div>
-
-            <div className='row'>
-              <label>
-                Password
+                Password&nbsp;
                 <input
                   name='password'
                   type='password'
@@ -122,20 +104,7 @@ function Login(props) {
                 />
               </label>
             </div>
-
-            <div className='row'>
-              <label>
-                Owner?
-                <input
-                  name='owner'
-                  type='checkbox'
-                  checked={formData.owner}
-                  onChange={handleChange}
-                />
-              </label>
-            </div>
-
-            <div className='row'>
+            <div className='row'><br/>
               <button disabled={disabledButton}>Submit!</button>
             </div>
           </form>
