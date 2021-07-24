@@ -14,14 +14,14 @@ function SignUp(props) {
     username: '',
     email: '',
     password: '',
-    owner: false,
+    isOwner: false,
   })
 
   const [errors, setErrors] = useState({
     username: '',
     email: '',
     password: '',
-    owner: '',
+    isOwner: '',
   })
 
   const formSchema = yup.object().shape({
@@ -37,7 +37,7 @@ function SignUp(props) {
       .string()
       .required('Password is Required')
       .min(6, 'Passwords must be at least 6 characters long.'),
-    owner: yup.boolean(),
+    isOwner: yup.boolean(),
   })
 
   const setFormErrors = (name, value) => {
@@ -50,14 +50,15 @@ function SignUp(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    // localStorage.setItem('token', formData.password)
     // alert(JSON.stringify(formData))
     axiosWithAuth().post('auth/register', formData)
       .then(res => {
         console.log(res.data)
         localStorage.setItem('token', formData.password);
-        setFormData({
-          username: formData.username
-        })
+        // setFormData({
+        //   username: formData.username
+        // })
         push('/')
       })
       .catch(err => {
@@ -129,9 +130,9 @@ function SignUp(props) {
               <label>
                 Owner?&nbsp;
                 <input
-                  name='owner'
+                  name='isOwner'
                   type='checkbox'
-                  checked={formData.owner}
+                  checked={formData.isOwner}
                   onChange={handleChange}
                 />
               </label>
