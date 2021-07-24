@@ -73,21 +73,25 @@ const ItemForm = () => {
   return (
     <div>
       <form onSubmit={submit}>
-
+        <br/>
         <label htmlFor="item_name">Item Name</label>
         <input value={form.item_name} name="item_name" type="text" onChange={handleChange}/>
-
+        <br/>
         <label htmlFor="location">Location</label>
         <input value={form.location} name="location" type="text" onChange={handleChange}/>
+        <br/>
 
         <label htmlFor="quantity">Quantity</label>
         <input value={form.quantity} name="quantity" type="text" onChange={handleChange}/>
+        <br/>
 
         <label htmlFor="price">Price</label>
         <input value={form.price} name="price" type="text" onChange={handleChange}/>
+        <br/>
 
         <label htmlFor="description">Description</label>
         <input value={form.description} name="description" type="description" onChange={handleChange}/>
+        <br/>
 
         <button>Submit</button>
       </form>

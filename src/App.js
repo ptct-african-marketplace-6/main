@@ -1,6 +1,6 @@
 import './App.css';
 import React, { useState, useEffect } from 'react'
-import { Route, Link, Switch } from 'react-router-dom'
+import { Route, Link, Switch, useHistory } from 'react-router-dom'
 import ItemsList from './components/ItemsList'
 import Item from './components/Item'
 import Home from './components/Home'
@@ -10,6 +10,8 @@ import ItemForm from './components/ItemForm'
 import { fetchItems } from './common/actions/itemActions';
 import axiosWithAuth from './common/helpers/axiosWithAuth';
 
+import './App.css';
+
 // import data from './data'
 
 // const fetchData = () => {
@@ -17,7 +19,7 @@ import axiosWithAuth from './common/helpers/axiosWithAuth';
 // }
 
 function App(props) {
-
+  const { push } = useHistory();
   const [data, setData] = useState([])
 
   // useEffect for local dummy data (pre-API)
@@ -27,7 +29,7 @@ function App(props) {
 
   useEffect(() => {
     axiosWithAuth()
-    // .fetchItems()
+    // .fetchItems() <--- this action needs more work
       .get('items')
       .then(res => {
         console.log(res.data);
@@ -37,13 +39,17 @@ function App(props) {
         console.log(err);
       })
   }, []);
-
-  // setData(items);
-
   if (props.isLoading) {
       return <><h2>Loading items...</h2></>
   } 
 
+  const logout = () => {
+    localStorage.removeItem('token');
+    console.log("You have been logged out!");
+    alert("You have logged out successfully!");
+    push('/');
+  };
+  
   return (
     <div className="app">
 
@@ -53,8 +59,9 @@ function App(props) {
           <Link to="/"><button>Home</button></Link>{' '}
           <Link to="/items-list"><button>Shop</button></Link>{' '}
           <Link to="/item-form"><button>Sell</button></Link>{' '}
-          <Link to="/log-in"><button>Log In</button></Link>{' '}
-          <Link to="/sign-up"><button>Sign Up</button></Link>
+          <Link to="/log-in"><button className="login-nav-btn">Log In</button></Link>{' '}
+          <Link to="/sign-up"><button>Sign Up</button></Link>{' '}
+          <Link onClick={logout}><button className='logout-nav-btn'>Logout</button></Link>
         </div>
       </nav>
 

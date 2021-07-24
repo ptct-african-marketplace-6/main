@@ -22,21 +22,16 @@ function Login(props) {
     password: yup.string().required('Password is Required'),
   })
 
-  const setFormErrors = (name, value) => {
+  const setFormErrors = (username, value) => {
     yup
-      .reach(formSchema, name)
+      .reach(formSchema, username)
       .validate(value)
-      .then(() => setErrors({ ...errors, [name]: '' }))
-      .catch((err) => setErrors({ ...errors, [name]: err.errors[0] }))
+      .then(() => setErrors({ ...errors, [username]: '' }))
+      .catch((err) => setErrors({ ...errors, [username]: err.errors[0] }))
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    // alert(
-    //   `we should submit an axios request now using ${JSON.stringify(
-    //     formData
-    //   )} but the endpoint is not working`
-    // )
     axiosWithAuth().post("auth/login", formData)
     .then((res) => {
       localStorage.setItem("token", formData.password);
@@ -52,14 +47,14 @@ function Login(props) {
   }
 
   const handleChange = (e) => {
-    // const { name, type } = e.target
+    const { username } = e.target
     // const valueToUse = type === 'value'
     setFormData({
         ...formData,
         [e.target.name]: e.target.value,
     })
-    console.log(formData)
-    // setFormErrors(name, type)
+    // console.log(formData)
+    setFormErrors(username, e.target.value)
   }
 
   useEffect(() => {
