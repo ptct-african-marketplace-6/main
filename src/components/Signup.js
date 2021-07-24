@@ -54,11 +54,11 @@ function SignUp(props) {
     axiosWithAuth().post('auth/register', formData)
       .then(res => {
         console.log(res)
-        localStorage.setItem('token', res.data.payload);
-        setFormData({
-          name: formData.name
-        })
-        push('/')
+        // localStorage.setItem('token', res.data.payload);
+        // setFormData({
+        //   name: formData.name
+        // })
+        // push('/')
       })
       .catch(err => {
         console.log({err})
