@@ -1,4 +1,3 @@
-import './App.css';
 import React, { useState, useEffect } from 'react'
 import { Route, Link, Switch, useHistory } from 'react-router-dom'
 import ItemsList from './components/ItemsList'
@@ -12,27 +11,16 @@ import axiosWithAuth from './common/helpers/axiosWithAuth';
 
 import './App.css';
 
-// import data from './data'
-
-// const fetchData = () => {
-//   return Promise.resolve({ success: true, data })
-// }
-
 function App(props) {
   const { push } = useHistory();
   const [data, setData] = useState([])
-
-  // useEffect for local dummy data (pre-API)
-  // useEffect(() => {
-  //   fetchData().then(res => setData(res.data))
-  // }, [])
 
   useEffect(() => {
     axiosWithAuth()
     // .fetchItems() <--- this action needs more work
       .get('items')
       .then(res => {
-        console.log(res.data);
+        // console.log(res.data);
         setData(res.data)
       })
       .catch(err => {
@@ -61,7 +49,7 @@ function App(props) {
           <Link to="/item-form"><button>Sell</button></Link>{' '}
           <Link to="/log-in"><button className="login-nav-btn">Log In</button></Link>{' '}
           <Link to="/sign-up"><button>Sign Up</button></Link>{' '}
-          <Link onClick={logout}><button className='logout-nav-btn'>Logout</button></Link>
+          <Link to="/" onClick={logout}><button className='logout-nav-btn'>Logout</button></Link>
         </div>
       </nav>
 

@@ -50,14 +50,14 @@ function SignUp(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log(JSON.stringify(formData))
+    // alert(JSON.stringify(formData))
     axiosWithAuth().post('auth/register', formData)
       .then(res => {
-        console.log(res)
+        console.log(res.data)
         localStorage.setItem('token', formData.password);
-        // setFormData({
-        //   username: formData.username
-        // })
+        setFormData({
+          username: formData.username
+        })
         push('/')
       })
       .catch(err => {
@@ -68,15 +68,13 @@ function SignUp(props) {
   const handleChange = (e) => {
     const { type } = e.target
     const valueToUse = type === 'checkbox' ? 'checked' : 'value'
-    setFormData((prev) => {
-      return {
+    setFormData({
         ...formData,
         [e.target.name]: e.target[valueToUse],
-      }
     })
-    // console.log(formData)
+    console.log(formData)
 
-    setFormErrors(e.target.name, e.target[!valueToUse])
+    setFormErrors(e.target.name, e.target[valueToUse])
   }
 
   useEffect(() => {
