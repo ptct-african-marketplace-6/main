@@ -171,6 +171,6 @@ Item Object:
 } 
 These are your ENDPOINTS and we list what each will return:
 Users
-POST https://saudi-market-app.herokuapp.com/api/auth/login
-POST https://saudi-market-app.herokuapp.com/api/auth/register
+POST https://sauti-market-app.herokuapp.com/api/auth/login
+POST https://sauti-market-app.herokuapp.com/api/auth/register
  */
