@@ -27,7 +27,7 @@ function SignUp(props) {
   const formSchema = yup.object().shape({
     name: yup
       .string()
-      .required('Pleae include your name.')
+      .required('Please include your name.')
       .min(6, 'Name must be at least 6 characters long'),
     email: yup
       .string()
@@ -50,15 +50,15 @@ function SignUp(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    alert(JSON.stringify(formData))
+    // alert(JSON.stringify(formData))
     axiosWithAuth().post('auth/register', formData)
       .then(res => {
         console.log(res)
-        localStorage.setItem('token', formData.password);
+        localStorage.setItem('token', res.data.payload);
         setFormData({
           name: formData.name
         })
-        push('/items-list')
+        push('/')
       })
       .catch(err => {
         console.log({err})
@@ -84,7 +84,7 @@ function SignUp(props) {
 
   return (
     <>
-      <div class='container-fluid col-md-auto'>
+      <div className='container-fluid col-md-auto'>
         <div className='App'>
           <form
             onSubmit={handleSubmit}

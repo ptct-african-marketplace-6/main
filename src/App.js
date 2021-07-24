@@ -33,7 +33,6 @@ function App() {
           <Link to="/item-form"><button>Sell</button></Link>{' '}
           <Link to="/log-in"><button>Log In</button></Link>{' '}
           <Link to="/sign-up"><button>Sign Up</button></Link>
-
         </div>
       </nav>
 

@@ -74,19 +74,19 @@ const ItemForm = () => {
     <div>
       <form onSubmit={submit}>
 
-        <label for="item_name">Item Name</label>
+        <label htmlFor="item_name">Item Name</label>
         <input value={form.item_name} name="item_name" type="text" onChange={handleChange}/>
 
-        <label for="location">Location</label>
+        <label htmlFor="location">Location</label>
         <input value={form.location} name="location" type="text" onChange={handleChange}/>
 
-        <label for="quantity">Quantity</label>
+        <label htmlFor="quantity">Quantity</label>
         <input value={form.quantity} name="quantity" type="text" onChange={handleChange}/>
 
-        <label for="price">Price</label>
+        <label htmlFor="price">Price</label>
         <input value={form.price} name="price" type="text" onChange={handleChange}/>
 
-        <label for="description">Description</label>
+        <label htmlFor="description">Description</label>
         <input value={form.description} name="description" type="description" onChange={handleChange}/>
 
         <button>Submit</button>
