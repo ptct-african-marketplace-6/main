@@ -41,7 +41,7 @@ function Login(props) {
     .then((res) => {
       console.log("submitted login successfully:", res)
       if ((!localStorage.getItem("name")) || (localStorage.getItem("name") !== formData.name)) {
-        localStorage.setItem("username", formData.username);
+        localStorage.setItem("token", res.data.payload);
         setFormData({
           username: formData.username
         });
