@@ -48,7 +48,6 @@ function Login(props) {
 
   const handleChange = (e) => {
     const { username } = e.target
-    // const valueToUse = type === 'value'
     setFormData({
         ...formData,
         [e.target.name]: e.target.value,
@@ -63,7 +62,7 @@ function Login(props) {
 
   return (
     <>
-      <div className='container-fluid col-md-auto'>
+      <div>
         <div className='App'>
           <form
             onSubmit={handleSubmit}

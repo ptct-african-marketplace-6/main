@@ -50,7 +50,7 @@ function SignUp(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    alert(JSON.stringify(formData))
+    console.log(JSON.stringify(formData))
     axiosWithAuth().post('auth/register', formData)
       .then(res => {
         console.log(res)
@@ -74,7 +74,7 @@ function SignUp(props) {
         [e.target.name]: e.target[valueToUse],
       }
     })
-    console.log(formData)
+    // console.log(formData)
 
     setFormErrors(e.target.name, e.target[!valueToUse])
   }
