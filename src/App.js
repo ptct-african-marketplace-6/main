@@ -7,20 +7,42 @@ import Home from './components/Home'
 import Login from './components/Login'
 import Signup from './components/Signup'
 import ItemForm from './components/ItemForm'
+import { fetchItems } from './common/actions/itemActions';
+import axiosWithAuth from './common/helpers/axiosWithAuth';
 
-import data from './data'
+// import data from './data'
 
-const fetchData = () => {
-  return Promise.resolve({ success: true, data })
-}
+// const fetchData = () => {
+//   return Promise.resolve({ success: true, data })
+// }
 
-function App() {
+function App(props) {
 
   const [data, setData] = useState([])
 
+  // useEffect for local dummy data (pre-API)
+  // useEffect(() => {
+  //   fetchData().then(res => setData(res.data))
+  // }, [])
+
   useEffect(() => {
-    fetchData().then(res => setData(res.data))
-  }, [])
+    axiosWithAuth()
+    // .fetchItems()
+      .get('items')
+      .then(res => {
+        console.log(res.data);
+        setData(res.data)
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  }, []);
+
+  // setData(items);
+
+  if (props.isLoading) {
+      return <><h2>Loading items...</h2></>
+  } 
 
   return (
     <div className="app">

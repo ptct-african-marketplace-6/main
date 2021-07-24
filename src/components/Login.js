@@ -8,17 +8,17 @@ function Login(props) {
 
   const [disabledButton, setDisabledButton] = useState(true)
   const [formData, setFormData] = useState({
-    name: '',
+    username: '',
     password: '',
   })
 
   const [errors, setErrors] = useState({
-    name: '',
+    username: '',
     password: '',
   })
 
   const formSchema = yup.object().shape({
-    name: yup.string().required('Pleae include your name.'),
+    username: yup.string().required('Pleae include your username.'),
     password: yup.string().required('Password is Required'),
   })
 
@@ -39,34 +39,27 @@ function Login(props) {
     // )
     axiosWithAuth().post("auth/login", formData)
     .then((res) => {
-      console.log("submitted login successfully:", res)
-      if ((!localStorage.getItem("name")) || (localStorage.getItem("name") !== formData.name)) {
-        localStorage.setItem("token", res.data.payload);
-        setFormData({
-          username: formData.username
-        });
-        push("/items-list");
-      }
-      else {
-        push("/");
-      }
+      localStorage.setItem("token", formData.password);
+      setFormData({
+        username: formData.username
+      });
+      console.log("submitted login successfully:", res);
+      push("/items-list");
     })
     .catch((err) => {
-      console.error("something went wrong with post request: ", err);
+      console.error("something went wrong with post request: ", {err});
     })
   }
 
   const handleChange = (e) => {
-    const { name, type } = e.target
-    const valueToUse = type === 'checkbox' ? 'checked' : 'value'
-    setFormData((prev) => {
-      return {
+    // const { name, type } = e.target
+    // const valueToUse = type === 'value'
+    setFormData({
         ...formData,
-        [e.target.name]: e.target[valueToUse],
-      }
+        [e.target.name]: e.target.value,
     })
-
-    setFormErrors(name, e.target[valueToUse])
+    console.log(formData)
+    // setFormErrors(name, type)
   }
 
   useEffect(() => {
@@ -85,9 +78,9 @@ function Login(props) {
               <label>
                 Username&nbsp;
                 <input
-                  name='name'
+                  name='username'
                   type='text'
-                  value={formData.name}
+                  value={formData.username}
                   onChange={handleChange}
                 />
               </label>
