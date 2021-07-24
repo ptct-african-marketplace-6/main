@@ -2,6 +2,8 @@ import axios from 'axios'
 import React, { useState, useEffect } from 'react'
 import * as yup from 'yup'
 
+import '../App.css';
+
 let schema = yup.object().shape({
   item_name: yup.string().required('item name is required'),
   location: yup.string().required('item location is required'),
@@ -71,7 +73,7 @@ const ItemForm = () => {
   }, [form])
 
   return (
-    <div>
+    <div className="App">
       <form onSubmit={submit}>
         <br/>
         <label htmlFor="item_name">Item Name</label>

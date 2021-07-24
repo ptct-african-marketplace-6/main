@@ -3,8 +3,8 @@ import { Route, Link, Switch, useHistory } from 'react-router-dom'
 import ItemsList from './components/ItemsList'
 import Item from './components/Item'
 import Home from './components/Home'
-import Login from './components/Login'
-import Signup from './components/Signup'
+import Login from './components/Login/Login'
+import Signup from './components/Signup/Signup'
 import ItemForm from './components/ItemForm'
 import { fetchItems } from './common/actions/itemActions';
 import axiosWithAuth from './common/helpers/axiosWithAuth';
@@ -39,7 +39,7 @@ function App(props) {
   };
   
   return (
-    <div className="app">
+    <div className="App">
 
       <nav>
         <h1>Market Place</h1>
