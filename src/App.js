@@ -52,12 +52,12 @@ function App(props) {
       <nav>
         <h1>Market Place</h1>
         <div className="nav-links">
-          <Link to="/"><button>Home</button></Link>{' '}
-          <Link to="/items-list"><button>Shop</button></Link>{' '}
-          <Link to="/item-form"><button>Sell</button></Link>{' '}
-          <Link to="/log-in"><button className="login-nav-btn">Log In</button></Link>{' '}
-          <Link to="/sign-up"><button>Sign Up</button></Link>{' '}
-          <Link to="/" onClick={logout}><button className='logout-nav-btn'>Logout</button></Link>
+          <Link to="/"><button className='w-auto btn btn-success'>Home</button></Link>{' '}
+          <Link to="/items-list"><button className='w-auto btn btn-success'>Shop</button></Link>{' '}
+          {/* <Link to="/item-form"><button className='w-auto btn btn-success'>Sell</button></Link>{' '} */}
+          <Link to="/log-in"><button className='w-auto btn btn-info'>Log In</button></Link>{' '}
+          <Link to="/sign-up"><button className='w-auto btn btn-info'>Sign Up</button></Link>{' '}
+          <Link to="/" onClick={logout}><button className='w-auto btn btn-danger'>Logout</button></Link>
         </div>
       </nav>
 

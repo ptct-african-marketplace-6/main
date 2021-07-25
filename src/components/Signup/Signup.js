@@ -86,13 +86,13 @@ function SignUp(props) {
 
   return (
     <div className='text-center'>
-      <main className='form-signin text-center'>
+      <main className='form-signin'>
         <form className='text-center' onSubmit={handleSubmit}>
           <h1 class='h3 mb-3 fw-normal'>
             Welcome! Please sign up using the form below.
           </h1>
+
           <div className='form-floating'>
-          <label htmlFor='floatingInput'>Name</label>{' '}
             <input
               name='username'
               className='form-control'
@@ -102,23 +102,23 @@ function SignUp(props) {
               value={formData.username}
               onChange={handleChange}
             />
+            <label htmlFor='floatingInput'>Name</label>
           </div>
 
           <div className='form-floating'>
-          <label htmlFor='floatingEmail'>Email</label>{' '}
             <input
               name='email'
               id='floatingEmail'
-              type='text'
+              type='email'
               placeholder='john.smith@gmail.com'
               className='form-control'
               value={formData.email}
               onChange={handleChange}
             />
+            <label htmlFor='floatingEmail'>Email</label>
           </div>
 
           <div className='form-floating'>
-          <label htmlFor='floatingPassword'>Password</label>{' '}
             <input
               name='password'
               type='password'
@@ -128,10 +128,10 @@ function SignUp(props) {
               id='floatingPassword'
               onChange={handleChange}
             />
+          <label htmlFor='floatingPassword'>Password</label>
           </div>
 
           <div className='checkbox mb-3 row'>
-          <label htmlFor='floatingOwner'>Owner?</label>{' '}
             <input
               name='owner'
               id='floatingOwner'
@@ -139,6 +139,7 @@ function SignUp(props) {
               checked={formData.isOwner}
               onChange={handleChange}
             />
+          <label htmlFor='floatingOwner'>Owner?</label>
           </div>
 
           <button

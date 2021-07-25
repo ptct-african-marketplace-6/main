@@ -5,7 +5,6 @@ const axiosWithAuth = () => {
 
   return axios.create({
     baseURL: "https://sauti-market-bw.herokuapp.com/api/",
-    // baseURL: "http://localhost:5500",
     headers: {
       "Access-Control-Allow-Credentials": true,
       // "Access-Control-Allow-Origin": "*",

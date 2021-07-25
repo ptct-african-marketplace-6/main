@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React, { useState, useEffect } from 'react'
+import { useHistory } from 'react-router-dom';
 import * as yup from 'yup'
 
 import '../App.css';
@@ -19,14 +20,23 @@ let schema = yup.object().shape({
 
 
 const AddItem = () => {
+  const { push } = useHistory();
+
+  const initialValues = {
+    item_name: "",
+    location: "",
+    quantity: "",
+    price: "",
+    description: ""    
+  }
+
   const [form, setForm] = useState({
     item_name: "",
     location: "",
     quantity: "",
     price: "",
     description: ""
-})
-
+  })
 
   const [errors, setErrors] = useState({
       item_name: "",
@@ -46,23 +56,27 @@ const AddItem = () => {
 
   const [disabled, setDisabled] = useState(true);
 
-  const handleChange = (event) => {
-    setForm(event.target.value)
+  const handleChange = (e) => {
+    // const { name, type } = e.target
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value
+    })
+    // console.log(form)
+    setFormErrors(e.target.name, e.target.value)
+    // console.log(errors)
   }
 
-  const submit = (event) => {
-    event.prevetDefault()
+  const submit = (e) => {
+    e.preventDefault()
 
-    const newItem = {
-      item_name: form.item_name,
-      location: form.location,
-      quantity: form.quantity,
-      price: form.price,
-      description: form.description
-    }
-    axiosWithAuth().post("item", newItem)
-    .then((res) => {
-      setForm({ item_name: "", location: "", quantity: "", price: "", description: ""})
+    axios.post("https://sauti-market-bw.herokuapp.com/api/items", form)
+    .then(res => {
+      console.log("body of new item: ", form)
+      console.log("Successfully added new item!");
+      console.log(res.data)
+      setForm(initialValues)
+      push('/items-list');
     })
     .catch((err) => {
       console.log(err)
@@ -77,9 +91,14 @@ const AddItem = () => {
     <div className="text-center">
       <main className="form-signin text-center">
         <form className="text-center" onSubmit={submit}>
+        <h1 class='h3 mb-3 fw-normal'>
+            Add your new item.
+          </h1>
+        <h1 class='h5 mb-3 fw-normal'>
+          This will be added to the marketplace as your new listing.
+        </h1>
           <br/>
           <div className="form-floating">
-            <label htmlFor="floatingInput">Item Name</label>{' '}
             <input 
               value={form.item_name} 
               name="item_name" 
@@ -88,11 +107,11 @@ const AddItem = () => {
               id="floatingInput"
               onChange={handleChange}
             />
+          <label htmlFor="floatingInput">Item Name</label>
           </div>
           <br/>
 
           <div className="form-floating">
-            <label htmlFor="floatingInput">Location</label>
             <input 
               value={form.location} 
               name="location" 
@@ -101,11 +120,11 @@ const AddItem = () => {
               id="floatingInput"
               onChange={handleChange}
             />
+          <label htmlFor="floatingInput">Location</label>
           </div>          
           <br/>
 
           <div className="form-floating">
-            <label htmlFor="floatingInput">Quantity</label>
             <input 
               value={form.quantity} 
               name="quantity" 
@@ -114,11 +133,11 @@ const AddItem = () => {
               id="floatingInput"
               onChange={handleChange}
             />
+          <label htmlFor="floatingInput">Quantity</label>
           </div>
           <br/>
 
           <div className="form-floating">
-            <label htmlFor="floatingInput">Price</label>
             <input 
               value={form.price} 
               name="price" 
@@ -127,11 +146,11 @@ const AddItem = () => {
               id="floatingInput"
               onChange={handleChange}
             />
+          <label htmlFor="floatingInput">Price</label>
           </div>
           <br/>
 
           <div className="form-floating">
-            <label htmlFor="floatingInput">Description</label>
             <input 
               value={form.description} 
               name="description" 
@@ -140,10 +159,11 @@ const AddItem = () => {
               id="floatingInput"
               onChange={handleChange}
               />
+          <label htmlFor="floatingInput">Description</label>
           </div>
           <br/>
 
-          <button className="w-100 btn btn-lg btn-success">Submit</button>
+          <button className="w-100 btn btn-lg btn-success" disabled={disabled}>Submit</button>
         </form>
       </main>
     </div>
