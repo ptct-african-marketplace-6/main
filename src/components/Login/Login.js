@@ -67,37 +67,42 @@ function Login(props) {
 
   return (
     <>
-      <div>
-        <div className='App'>
-          <form
+      <div className='text-center'>
+        <div className='form-signin'>
+          <br/>
+          <form 
+            className='text-center'
             onSubmit={handleSubmit}
-            className='d-flex flex-column container-fluid col-md-auto'
           >
-            <div className='row'>
-              <label>
-                Username&nbsp;
-                <input
-                  name='username'
-                  type='text'
-                  value={formData.username}
-                  onChange={handleChange}
-                />
-              </label>
-            </div>
+          <h1 class='h3 mb-3 fw-normal'>
+            Welcome! Please log in using the form below.
+          </h1>
+          <div className='form-floating'>
+            <input
+              name='username'
+              className='form-control'
+              id='floatingInput'
+              type='text'
+              value={formData.username}
+              onChange={handleChange}
+            />
+            <label htmlFor='floatingInput'>Name</label>
+          </div>
+
+          <div className='form-floating'>
+            <input
+              name='password'
+              type='password'
+              className='form-control'
+              value={formData.password}
+              id='floatingPassword'
+              onChange={handleChange}
+            />
+          <label htmlFor='floatingPassword'>Password</label>
+          </div>
             <br/>
-            <div className='row'>
-              <label>
-                Password&nbsp;
-                <input
-                  name='password'
-                  type='password'
-                  value={formData.password}
-                  onChange={handleChange}
-                />
-              </label>
-            </div>
             <div className='row'><br/>
-              <button disabled={disabledButton}>Submit!</button>
+              <button className="w-100 btn btn-lg btn-success" disabled={disabledButton}>Submit!</button>
             </div>
           </form>
         </div>

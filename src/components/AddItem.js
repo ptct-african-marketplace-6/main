@@ -2,7 +2,6 @@ import axios from 'axios'
 import React, { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom';
 import * as yup from 'yup'
-
 import '../App.css';
 import axiosWithAuth from '../common/helpers/axiosWithAuth';
 
@@ -91,10 +90,10 @@ const AddItem = () => {
     <div className="text-center">
       <main className="form-signin text-center">
         <form className="text-center" onSubmit={submit}>
-        <h1 class='h3 mb-3 fw-normal'>
+        <h1 className='h3 mb-3 fw-normal'>
             Add your new item.
           </h1>
-        <h1 class='h5 mb-3 fw-normal'>
+        <h1 className='h5 mb-3 fw-normal'>
           This will be added to the marketplace as your new listing.
         </h1>
           <br/>
@@ -162,6 +161,23 @@ const AddItem = () => {
           <label htmlFor="floatingInput">Description</label>
           </div>
           <br/>
+
+          {/* tried adding a drop down list for locations, does not work with current formSchema validation */}
+
+          {/* <div className="form-input">
+            <label>Location
+              <select value={form.location} onChange={handleChange}>
+                <option value="Kenya">Kenya</option>
+                <option value="Uganda">Uganda</option>
+                <option value="Tanzania">Tanzania</option>
+                <option value="Rwanda">Rwanda</option>
+                <option value="South Sudan">South Sudan</option>
+                <option value="Burundi">Burundi</option>
+                <option value="DRC">DRC</option>
+              </select>
+            </label>
+          </div>          
+          <br/><br/> */}
 
           <button className="w-100 btn btn-lg btn-success" disabled={disabled}>Submit</button>
         </form>
