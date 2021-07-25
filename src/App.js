@@ -12,6 +12,7 @@ import axiosWithAuth from './common/helpers/axiosWithAuth';
 import InnerNavbar from './components/InnerNavbar';
 
 import './App.css';
+import { Container } from 'react-bootstrap'
 
 function App(props) {
   const { push } = useHistory();
@@ -64,9 +65,7 @@ function App(props) {
       <div>
         {
           localStorage.getItem('token') && 
-          <div>
             <InnerNavbar items={data}/>
-          </div>
         }
       </div>
 
