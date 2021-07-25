@@ -6,7 +6,7 @@ import axiosWithAuth from "../../common/helpers/axiosWithAuth";
 // import './login.css';
 
 function Login(props) {
-  const { push } = useHistory();
+  const history = useHistory();
 
   const [disabledButton, setDisabledButton] = useState(true)
   const [formData, setFormData] = useState({
@@ -44,9 +44,8 @@ function Login(props) {
         // user_id: res.data.id
       });
       console.log("submitted login successfully:", res);
-      push("/items-list");
+      history.push("/items-list");
       return <Redirect to='/items-list'/>
-      // push('/items-list')
     })
     .catch((err) => {
       console.error("something went wrong with post request: ", {err});

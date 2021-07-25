@@ -5,7 +5,7 @@ function Logout(props) {
     const { push } = useHistory();
     localStorage.removeItem('token') 
     localStorage.removeItem('username')
-    push('/');
+    // push('/');
 
     return <Redirect to='/' />
 };
