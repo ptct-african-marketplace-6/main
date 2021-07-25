@@ -29,19 +29,13 @@ export default function InnerNavbar(props) {
       </Container>
 
       <Switch>
-        <Route exact path="/items-list" 
-        // component={ItemsList}
-        >
+        <Route exact path="/items-list">
           <ItemsList items={items}/>
         </Route>
-        <Route exact path="/add-item" 
-        // component={AddItem}
-        >
+        <Route exact path="/add-item">
           <AddItem items={items}/>
         </Route>
-        <Route exact path="/logout" 
-        // component={Logout}
-        >
+        <Route exact path="/logout">
           <Logout/>
         </Route>
         <Route exact path="/help">
