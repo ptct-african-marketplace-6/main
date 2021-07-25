@@ -21,12 +21,15 @@ let schema = yup.object().shape({
 const AddItem = () => {
   const { push } = useHistory();
 
+  const userID = localStorage.getItem('username')  
+
   const initialValues = {
     item_name: "",
     location: "",
     quantity: "",
     price: "",
-    description: ""    
+    description: "",
+    // user_id: ""  
   }
 
   const [form, setForm] = useState({
@@ -34,7 +37,8 @@ const AddItem = () => {
     location: "",
     quantity: "",
     price: "",
-    description: ""
+    description: "",
+    // user_id: ""
   })
 
   const [errors, setErrors] = useState({
@@ -59,7 +63,8 @@ const AddItem = () => {
     // const { name, type } = e.target
     setForm({
       ...form,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
+      // user_id: userID
     })
     // console.log(form)
     setFormErrors(e.target.name, e.target.value)
@@ -78,7 +83,7 @@ const AddItem = () => {
       push('/items-list');
     })
     .catch((err) => {
-      console.log(err)
+      console.log({err})
     })
   }
 
