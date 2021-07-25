@@ -20,7 +20,7 @@ function Login(props) {
   })
 
   const formSchema = yup.object().shape({
-    username: yup.string().required('Pleae include your username.'),
+    username: yup.string().required('Please include your username.'),
     password: yup.string().required('Password is Required'),
   })
 
@@ -36,9 +36,12 @@ function Login(props) {
     e.preventDefault()
     axiosWithAuth().post("auth/login", formData)
     .then((res) => {
+      console.log(res.data)
       localStorage.setItem("token", formData.password);
+      localStorage.setItem("username", formData.username)
       setFormData({
-        username: formData.username
+        username: formData.username,
+        // user_id: res.data.id
       });
       console.log("submitted login successfully:", res);
       push("/items-list");

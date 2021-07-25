@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Route, Link, Switch, useHistory } from 'react-router-dom'
+
 import ItemsList from './components/ItemsList'
 import Item from './components/Item'
 import Home from './components/Home'
@@ -8,12 +9,18 @@ import Signup from './components/Signup/Signup'
 import ItemForm from './components/ItemForm'
 import { fetchItems } from './common/actions/itemActions';
 import axiosWithAuth from './common/helpers/axiosWithAuth';
+import InnerNavbar from './components/InnerNavbar';
 
 import './App.css';
 
 function App(props) {
   const { push } = useHistory();
   const [data, setData] = useState([])
+
+  const [user, setUser] = useState([{
+    username: localStorage.getItem('username'),
+    // user_id: localStorage.getItem("user_id")
+  }]);
 
   useEffect(() => {
     axiosWithAuth()
@@ -33,6 +40,7 @@ function App(props) {
 
   const logout = () => {
     localStorage.removeItem('token');
+    localStorage.removeItem('username');
     console.log("You have been logged out!");
     alert("You have logged out successfully!");
     push('/');
@@ -52,6 +60,15 @@ function App(props) {
           <Link to="/" onClick={logout}><button className='logout-nav-btn'>Logout</button></Link>
         </div>
       </nav>
+
+      <div>
+        {
+          localStorage.getItem('token') && 
+          <div>
+            <InnerNavbar items={data}/>
+          </div>
+        }
+      </div>
 
       <Switch>
 
