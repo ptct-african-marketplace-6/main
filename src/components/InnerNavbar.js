@@ -4,6 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 import { Container, Nav, Navbar } from 'react-bootstrap';
 
 import ItemsList from './ItemsList';
+import UserItems from './UserItems';
 import AddItem from './AddItem';
 import Logout from './Logout';
 import Help from './Help';
@@ -16,7 +17,7 @@ export default function InnerNavbar(props) {
     <div className="App">
       <Container fluid='sm' className='text-center' >
         <Navbar collapseOnSelect expand="sm" bg="light" variant="light">
-          <Navbar.Brand className="home-nav-btn" href='/items-list' defaultactivekey="/add-item">My Items</Navbar.Brand>
+          <Navbar.Brand className="home-nav-btn" href='/user-items' defaultactivekey="/user-items">My Items</Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mr-auto">
@@ -29,8 +30,8 @@ export default function InnerNavbar(props) {
       </Container>
 
       <Switch>
-        <Route exact path="/items-list">
-          <ItemsList items={items}/>
+        <Route exact path="/user-items">
+          <UserItems items={items}/>
         </Route>
         <Route exact path="/add-item">
           <AddItem items={items}/>
