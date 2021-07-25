@@ -88,7 +88,7 @@ function SignUp(props) {
     <div className='text-center'>
       <main className='form-signin text-center'>
         <form className='text-center' onSubmit={handleSubmit}>
-          <h1 class='h3 mb-3 fw-normal'>
+          <h1 className='h3 mb-3 fw-normal'>
             Welcome! Please sign up using the form below.
           </h1>
           <div className='form-floating'>
