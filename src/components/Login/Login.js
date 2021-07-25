@@ -1,59 +1,61 @@
-import React from 'react'
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect} from "react";
+import { useHistory } from "react-router-dom";
 import * as yup from 'yup'
-import './login.css'
+import axiosWithAuth from "../../common/helpers/axiosWithAuth";
+
+import './login.css';
 
 function Login(props) {
+  const { push } = useHistory();
+
   const [disabledButton, setDisabledButton] = useState(true)
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    pass: '',
-    owner: false,
+    username: '',
+    password: '',
   })
 
   const [errors, setErrors] = useState({
-    name: '',
-    email: '',
-    pass: '',
-    owner: '',
+    username: '',
+    password: '',
   })
 
   const formSchema = yup.object().shape({
-    name: yup.string().required('Pleae include your name.'),
-    email: yup.string().required('Must include email address.'),
-    pass: yup.string().required('Password is Required'),
-    owner: yup.boolean(),
+    username: yup.string().required('Pleae include your username.'),
+    password: yup.string().required('Password is Required'),
   })
 
-  const setFormErrors = (name, value) => {
+  const setFormErrors = (username, value) => {
     yup
-      .reach(formSchema, name)
+      .reach(formSchema, username)
       .validate(value)
-      .then(() => setErrors({ ...errors, [name]: '' }))
-      .catch((err) => setErrors({ ...errors, [name]: err.errors[0] }))
+      .then(() => setErrors({ ...errors, [username]: '' }))
+      .catch((err) => setErrors({ ...errors, [username]: err.errors[0] }))
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    alert(
-      `we should submit an axios request now using ${JSON.stringify(
-        formData
-      )} but the endpoint is not working`
-    )
+    axiosWithAuth().post("auth/login", formData)
+    .then((res) => {
+      localStorage.setItem("token", formData.password);
+      setFormData({
+        username: formData.username
+      });
+      console.log("submitted login successfully:", res);
+      push("/items-list");
+    })
+    .catch((err) => {
+      console.error("something went wrong with post request: ", {err});
+    })
   }
 
   const handleChange = (e) => {
-    const { name, type } = e.target
-    const valueToUse = type === 'checkbox' ? 'checked' : 'value'
-    setFormData((prev) => {
-      return {
+    const { username } = e.target
+    setFormData({
         ...formData,
-        [e.target.name]: e.target[valueToUse],
-      }
+        [e.target.name]: e.target.value,
     })
-
-    setFormErrors(name, e.target[valueToUse])
+    // console.log(formData)
+    setFormErrors(username, e.target.value)
   }
 
   useEffect(() => {
@@ -62,7 +64,7 @@ function Login(props) {
 
   return (
     <>
-      <div class='container-fluid col-md-auto'>
+      <div>
         <div className='App'>
           <form
             onSubmit={handleSubmit}
@@ -70,53 +72,28 @@ function Login(props) {
           >
             <div className='row'>
               <label>
-                Name
+                Username&nbsp;
                 <input
-                  name='name'
+                  name='username'
                   type='text'
-                  value={formData.name}
+                  value={formData.username}
                   onChange={handleChange}
                 />
               </label>
             </div>
-
+            <br/>
             <div className='row'>
               <label>
-                Email
+                Password&nbsp;
                 <input
-                  name='email'
-                  type='text'
-                  value={formData.email}
+                  name='password'
+                  type='password'
+                  value={formData.password}
                   onChange={handleChange}
                 />
               </label>
             </div>
-
-            <div className='row'>
-              <label>
-                Password
-                <input
-                  name='pass'
-                  type='text'
-                  value={formData.pass}
-                  onChange={handleChange}
-                />
-              </label>
-            </div>
-
-            <div className='row'>
-              <label>
-                Owner?
-                <input
-                  name='owner'
-                  type='checkbox'
-                  checked={formData.owner}
-                  onChange={handleChange}
-                />
-              </label>
-            </div>
-
-            <div className='row'>
+            <div className='row'><br/>
               <button disabled={disabledButton}>Submit!</button>
             </div>
           </form>

@@ -1,64 +1,84 @@
+import axios from 'axios'
 import React from 'react'
 import { useState, useEffect } from 'react'
+import { useHistory } from 'react-router-dom'
 import * as yup from 'yup'
+import axiosWithAuth from '../../common/helpers/axiosWithAuth'
+
 import './signup.css'
 
 function SignUp(props) {
+  // Will be true if bootstrap is loaded, false otherwise
+
+  const { push } = useHistory()
+
   const [disabledButton, setDisabledButton] = useState(true)
   const [formData, setFormData] = useState({
-    name: '',
+    username: '',
     email: '',
-    pass: '',
-    owner: false,
+    password: '',
+    isOwner: false,
   })
 
   const [errors, setErrors] = useState({
-    name: '',
+    username: '',
     email: '',
-    pass: '',
+    password: '',
+    isOwner: '',
   })
 
   const formSchema = yup.object().shape({
-    name: yup
+    username: yup
       .string()
-      .required('Pleae include your name.')
+      .required('Please include your name.')
       .min(6, 'Name must be at least 6 characters long'),
     email: yup
       .string()
       .email('Please include your email address.')
       .required('Must include email address.'),
-    pass: yup
+    password: yup
       .string()
       .required('Password is Required')
       .min(6, 'Passwords must be at least 6 characters long.'),
+    isOwner: yup.bool(),
   })
 
-  const setFormErrors = (name, value) => {
+  const setFormErrors = (variable, value) => {
     yup
-      .reach(formSchema, name)
+      .reach(formSchema, variable)
       .validate(value)
-      .then(() => setErrors({ ...errors, [name]: '' }))
-      .catch((err) => setErrors({ ...errors, [name]: err.errors[0] }))
+      .then(() => setErrors({ ...errors, [variable]: '' }))
+      .catch((err) => setErrors({ ...errors, [variable]: err.errors[0] }))
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    alert(
-      `we should submit an axios request now using ${JSON.stringify(formData)}`
-    )
+
+    axiosWithAuth()
+      .post('auth/register', formData)
+      .then((res) => {
+        console.log(res.data)
+        localStorage.setItem('token', formData.password)
+        // setFormData({
+        //   username: formData.username
+        // })
+        push('/')
+      })
+      .catch((err) => {
+        console.log({ err })
+      })
   }
 
   const handleChange = (e) => {
-    const { name, type } = e.target
+    const { type } = e.target
     const valueToUse = type === 'checkbox' ? 'checked' : 'value'
-    setFormData((prev) => {
-      return {
-        ...formData,
-        [e.target.name]: e.target[valueToUse],
-      }
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target[valueToUse],
     })
+    console.log(formData)
 
-    setFormErrors(name, e.target[valueToUse])
+    setFormErrors(e.target.name, e.target[valueToUse])
   }
 
   useEffect(() => {
@@ -66,63 +86,64 @@ function SignUp(props) {
   })
 
   return (
-    <body className='text-center'>
-      <main className='form-signin text-center'>
+    <div className='text-center'>
+      <main className='form-signup text-center'>
         <form className='text-center' onSubmit={handleSubmit}>
-          <h1 class='h3 mb-3 fw-normal'>
-            Welcome back! Please access your account
+          <h1 className='h3 mb-3 fw-normal'>
+            Welcome! Please sign up using the form below.
           </h1>
           <div className='form-floating'>
+            <label for='floatingInput'>Name</label>
             <input
-              name='name'
+              name='username'
               className='form-control'
-              id='floatingInput'
+              id='floatingUser'
               placeholder='John Smith'
               type='text'
-              value={formData.name}
+              value={formData.username}
               onChange={handleChange}
             />
-            <label for='floatingInput'>Name</label>
           </div>
 
           <div className='form-floating'>
+            <label for='floatingEmail'>Email</label>
             <input
               name='email'
-              id='floatingEmail'
-              type='text'
-              placeholder='john.smith@gmail.com'
               className='form-control'
+              id='floatingEmail'
+              placeholder='john.smith@gmail.com'
+              type='text'
               value={formData.email}
               onChange={handleChange}
             />
-            <label for='floatingEmail'>Email</label>
           </div>
 
           <div className='form-floating'>
+            <label for='floatingPassword'>Password</label>
             <input
-              name='pass'
-              type='text'
+              name='password'
               className='form-control'
-              placeholder='******'
-              value={formData.pass}
               id='floatingPassword'
+              placeholder='******'
+              type='password'
+              value={formData.password}
               onChange={handleChange}
             />
-            <label for='floatingPassword'>Password</label>
           </div>
 
           <div className='checkbox mb-3 row'>
+            <label for='floatingisOwner'>Owner?</label>
             <input
-              name='owner'
-              id='floatingOwner'
+              name='isOwner'
+              id='floatingisOwner'
               type='checkbox'
-              checked={formData.owner}
+              checked={formData.isOwner}
               onChange={handleChange}
             />
-            <label for='floatingOwner'>Owner?</label>
           </div>
 
           <button
+            id='submitBtn'
             className='w-100 btn btn-lg btn-primary'
             disabled={disabledButton}
           >
@@ -130,42 +151,8 @@ function SignUp(props) {
           </button>
         </form>
       </main>
-    </body>
+    </div>
   )
 }
 
 export default SignUp
-
-/* https://drive.google.com/drive/folders/11iiMC9DiRtoqz77CTCeJPpR8zmiALyw0
-
-User Object:
-{
-  id: integer
-  username: string
-  password: string 
-  email: string
-  isOwner: boolean
-}
-Item Object:
-{
-  id: integer
-  item_name: string
-  location: string
-  quantity: integer
-  price: float
-  description: string
-  user_id: integer // this references the id in the user table
-} 
-
-These are your ENDPOINTS and we list what each will return:
-Users
-[POST] https://team-amazing.herokuapp.com/api/auth/register
-    returns user object
-[POST] https://team-amazing.herokuapp.com/api/auth/login
-    returns token, user object
-Items
-
-
-POST https://saudi-market-app.herokuapp.com/api/auth/login
-POST https://saudi-market-app.herokuapp.com/api/auth/register
- */

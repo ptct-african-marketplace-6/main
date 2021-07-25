@@ -36,3 +36,15 @@
     transform: rotate(360deg);
   }
 }
+
+.login-nav-btn {
+  background-color: aquamarine;
+}
+
+.logout-nav-btn {
+  background-color: tomato;
+}
+
+.add-cart-btn {
+  background-color: rgb(245, 211, 60);
+}
