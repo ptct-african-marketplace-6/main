@@ -1,5 +1,5 @@
 import React, { useState, useEffect} from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Redirect } from "react-router-dom";
 import * as yup from 'yup'
 import axiosWithAuth from "../../common/helpers/axiosWithAuth";
 
@@ -45,11 +45,21 @@ function Login(props) {
       });
       console.log("submitted login successfully:", res);
       push("/items-list");
+      return <Redirect to='/items-list'/>
+      // push('/items-list')
     })
     .catch((err) => {
       console.error("something went wrong with post request: ", {err});
     })
   }
+
+  // import { Redirect } from 'react-router-dom';
+
+// function Logout(props) {
+//   localStorage.removeItem('token') 
+//   localStorage.removeItem('username')
+//   return <Redirect to='/' />
+// };
 
   const handleChange = (e) => {
     const { username } = e.target
@@ -74,7 +84,7 @@ function Login(props) {
             className='text-center'
             onSubmit={handleSubmit}
           >
-          <h1 class='h3 mb-3 fw-normal'>
+          <h1 className='h3 mb-3 fw-normal'>
             Welcome! Please log in using the form below.
           </h1>
           <div className='form-floating'>
