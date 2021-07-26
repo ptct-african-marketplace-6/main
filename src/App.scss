@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Zen+Loop&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap');
+
+.app {
+
+  .title-container {
+
+    h1 {
+      font-family: 'Abril Fatface', cursive;
+      color: #0A2A58;
+      font-size: 3rem;
+      text-align: center;
+
+      @media(min-width: 768px) {
+        text-align: left;
+      }
+    }
+  }
+  nav {
+    
+    .nav-links {
+
+      a {
+        font-family: 'Open Sans Condensed', sans-serif;
+        color: #0A2A58;
+        font-size: 1.5rem;
+        text-decoration: none;
+        font-weight: 900;
+        text-transform: uppercase;
+      }
+
+    }
+  }
+
+  .btn {
+    text-decoration: none;
+    font-family: 'Abril Fatface', cursive;
+    color: #0A2A58;
+    font-size: 1.5rem;
+    text-decoration: none;
+    font-weight: 900;
+    background-color: #ffffff;
+    max-width: 300px;
+    width: 100%;
+    border-radius: 25px;
+    border: 1px solid#0A2A58;
+  }
+
+  .home-wrapper {
+    background-image: url('./assets/pink-brick.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    height: 100vh;
+  }
+
+  .items-list-container {
+    background-color: #99BFB3;
+
+    .row {
+      max-width: 1400px;
+
+      .item-card {
+        background-color: #ffffff;
+        max-width: 400px;
+        min-height: 200px;
+        width: 100%;
+        border-radius: 15px;
+  
+        a {
+          text-decoration: none;
+        }
+  
+        p {
+          font-family: 'Open Sans Condensed', sans-serif;
+          font-size: 1.5rem;
+          text-decoration: none;
+          color: #000000;
+          text-align: center;
+        }
+      }
+    }
+  }
+
+  .form-wrapper {
+    background-color: #99BFB3;
+
+    .row {
+      max-width: 1400px;
+
+      form {
+        background-color: #ffffff;
+        border-radius: 25px;
+
+        label {
+          font-family: 'Open Sans Condensed', sans-serif;
+          font-size: 1.5rem;
+          text-decoration: none;
+          color: #0A2A58;
+          text-align: left;
+        }
+
+        input {
+          min-width: 250px;
+          width: 100%;
+          border-radius: 10px;
+          border: 0.5px solid #0A2A58;
+
+          @media(min-width: 768px) {
+            min-width: 500px;
+          }
+        }
+      }
+    }
+
+  }
+
+  // #0A2A58
+  // #297FA4
+  // #D0766E
+}

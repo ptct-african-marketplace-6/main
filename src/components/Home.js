@@ -10,8 +10,12 @@ const Home = () => {
   }
 
   return (
-    <div className="home-wrapper">
-      <a onClick={routeToShop} className="btn">Shop Now!</a>
+    <div className="container-fluid home-wrapper">
+      <div className="row py-5">
+        <div className="col-12 d-flex justify-content-center align-items-center py-5 my-5">
+        <a onClick={routeToShop} className="btn mx-auto">Shop Now!</a>
+        </div>
+      </div>
     </div>
   )
 }

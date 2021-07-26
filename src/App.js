@@ -24,18 +24,24 @@ function App() {
 
   return (
     <div className="app">
-
-      <nav>
-        <h1>Market Place</h1>
-        <div className="nav-links">
-          <Link to="/">Home</Link>
-          <Link to="/items-list">Shop</Link>
-          <Link to="/item-form">Sell</Link>
-          <Link to="/log-in">Log In</Link>
-          <Link to="/sign-up">Sign Up</Link>
-
+      <div className="container-fluid">
+        <div className="row d-flex align-items-center">
+          <div className="col-md-6 col-12 title-container">
+            <h1>Market Place</h1>
+          </div>
+          <div className="col-md-6 col-12">
+            <nav>
+              <div className="nav-links d-flex justify-content-evenly align-items-center">
+                <Link to="/">Home</Link>
+                <Link to="/items-list">Shop</Link>
+                <Link to="/item-form">Sell</Link>
+                <Link to="/log-in">Log In</Link>
+                <Link to="/sign-up">Sign Up</Link>
+              </div>
+            </nav>
+          </div>
         </div>
-      </nav>
+      </div>
 
       <Switch>
 

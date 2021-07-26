@@ -71,26 +71,31 @@ const ItemForm = () => {
   }, [form])
 
   return (
-    <div>
-      <form onSubmit={submit}>
+    <div className="container-fluid form-wrapper">
+      <div className="row mx-auto">
+        <div className="col-12 d-flex justify-content-center">
+          <form onSubmit={submit} className="d-flex flex-column justify-content-center p-3 m-3">
 
-        <label for="item_name">Item Name</label>
-        <input value={form.item_name} name="item_name" type="text" onChange={handleChange}/>
+            <label className="py-2" for="item_name">Item Name</label>
+            <input value={form.item_name} name="item_name" type="text" onChange={handleChange}/>
 
-        <label for="location">Location</label>
-        <input value={form.location} name="location" type="text" onChange={handleChange}/>
+            <label className="py-2" for="location">Location</label>
+            <input value={form.location} name="location" type="text" onChange={handleChange}/>
 
-        <label for="quantity">Quantity</label>
-        <input value={form.quantity} name="quantity" type="text" onChange={handleChange}/>
+            <label className="py-2" for="quantity">Quantity</label>
+            <input value={form.quantity} name="quantity" type="text" onChange={handleChange}/>
 
-        <label for="price">Price</label>
-        <input value={form.price} name="price" type="text" onChange={handleChange}/>
+            <label className="py-2" for="price">Price</label>
+            <input value={form.price} name="price" type="text" onChange={handleChange}/>
 
-        <label for="description">Description</label>
-        <input value={form.description} name="description" type="description" onChange={handleChange}/>
+            <label className="py-2" for="description">Description</label>
+            <input value={form.description} name="description" type="description" onChange={handleChange}/>
 
-        <button>Submit</button>
-      </form>
+            <button className="btn my-3 mx-auto">Submit</button>
+
+          </form>
+        </div>
+      </div>
     </div>
   )
 }
