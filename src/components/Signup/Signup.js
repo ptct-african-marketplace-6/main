@@ -190,6 +190,7 @@ export default function SignUp(props) {
 
     //       <button
     //         className='w-100 btn btn-lg btn-primary'
+
     <Container component='main' maxWidth='xs'>
       <CssBaseline />
       <div className={classes.paper}>
@@ -209,7 +210,7 @@ export default function SignUp(props) {
                 required
                 fullWidth
                 id='username'
-                label='Name'
+                label='Username'
                 value={formData.username}
                 onChange={handleChange}
                 autoFocus
@@ -238,6 +239,7 @@ export default function SignUp(props) {
                 onChange={handleChange}
                 label='Password'
                 name='password'
+                type="password"
                 autoComplete='password'
               />
             </Grid>
