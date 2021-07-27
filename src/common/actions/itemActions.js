@@ -11,7 +11,7 @@ export const FETCH_ITEMS_ERROR = "FETCH_ITEMS_ERROR";
 export const fetchItems = () => (dispatch) => {
 
   dispatch({ type: FETCH_ITEMS });
-  axiosWithAuth.get("items")
+  axiosWithAuth().get("items")
     .then(res => {
       console.log(res);
       dispatch({ type: FETCH_ITEMS_OK, payload: res.data })

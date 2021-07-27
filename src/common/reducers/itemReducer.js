@@ -8,12 +8,12 @@ const initialState = {
 
 export const itemReducer = (state = initialState, action) => {
   switch (action.type) {
-    case FETCH_ITEMS_OK:
+    case FETCH_ITEMS:
       return {
         ...state,
         isLoading: true
       }
-    case FETCH_ITEMS:
+    case FETCH_ITEMS_OK:
       return {
         ...state,
         items: action.payload,

@@ -13,32 +13,41 @@ import InnerNavbar from './components/InnerNavbar';
 import { fetchItems } from './common/actions/itemActions'
 import './App.css';
 
+
 function App(props) {
   const { push } = useHistory();
-  const [data, setData] = useState([])
+  // const [data, setData] = useState([])
 
-  // const [user, setUser] = useState([{
-  // token: localStorage.getItem("token"),
-  // userID: localStorage.getItem("userID"),
-  // isOwner: localStorage.getItem("isOwner"),
-  // username: localStorage.getItem("username")
-  // }]);
+  // const userInfo = [
+  //   {
+  //     token: localStorage.getItem("token"),
+  //     userID: localStorage.getItem("userID"),
+  //     isOwner: localStorage.getItem("isOwner"),
+  //     username: localStorage.getItem("username")
+  //   }
+  // ];
 
-  // useEffect(() => { fetchItems() }, []);
-  console.log(data)
+  // componentDidMount(() => {
+  //   this.props.fetchItems();
+  // });
+
+  useEffect(() => { props.fetchItems(); }, []);
+
+  console.log(props.items)
+  // console.log(ItemsArray);
 
 
-  useEffect(() => {
-    axiosWithAuth()
-      .get('items')
-      .then(res => {
-        // console.log(res.data);
-        setData(res.data)
-      })
-      .catch(err => {
-        console.log(err);
-      })
-  }, []);
+  // useEffect(() => {
+  //   axiosWithAuth()
+  //     .get('items')
+  //     .then(res => {
+  //       // console.log(res.data);
+  //       setData(res.data)
+  //     })
+  //     .catch(err => {
+  //       console.log(err);
+  //     })
+  // }, []);
   
   if (props.isLoading) {
       return <><h2>Loading items...</h2></>
@@ -47,6 +56,8 @@ function App(props) {
   const logout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('username');
+    localStorage.removeItem("userID");
+    localStorage.getItem("isOwner");
     console.log("You have been logged out!");
     alert("You have logged out successfully!");
     push('/');
@@ -77,7 +88,7 @@ function App(props) {
       <div>
         {
           localStorage.getItem('token') && 
-            <InnerNavbar items={data}/>
+            <InnerNavbar items={props.items}/>
         }
       </div>
 
@@ -86,10 +97,10 @@ function App(props) {
           <Home />
         </Route>
         <Route path="/items-list/:itemID">
-          <Item items={data}/>
+          <Item items={props.items}/>
         </Route>
         <Route path='/items-list'>
-          <ItemsList items={data} />
+          <ItemsList items={props.items} />
         </Route>
         <Route path="/item-form">
           <ItemForm />
@@ -107,8 +118,8 @@ function App(props) {
 
 const mapStateToProps = (state) => {
   return {
-    items: state.items,
-    isLoading: state.isLoading,
+    items: state.props.items,
+    isLoading: state.props.isLoading,
   }
 }
 export default connect(mapStateToProps, {fetchItems})(App);

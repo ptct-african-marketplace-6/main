@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react'
+import { connect } from "react-redux";
 import { Link, useLocation } from 'react-router-dom'
 import { Container, Card, Row } from 'react-bootstrap';
 // import axiosWithAuth from '../common/helpers/axiosWithAuth';
 import { fetchItems } from '../common/actions/itemActions';
 
 const UserItems = (props) => {
-const { items } = props
+const { items } = props;
 const { pathname } = useLocation()
 
 // const initialValues = {
@@ -15,12 +16,11 @@ const { pathname } = useLocation()
 // const [allItems, setAllItems] = useState('');
 // const [userList, setUserList] = useState(initialValues);
 const userName = localStorage.getItem('username');
-const userToken = localStorage.getItem("token");
+// const userToken = localStorage.getItem("token");
 const userID = localStorage.getItem("userID");
 const isOwner = localStorage.getItem("isOwner");
 
-
-useEffect(() => { fetchItems(); }, []);
+useEffect(() => { props.fetchItems(); }, []);
 
 // useEffect(() => {
 //   axiosWithAuth()
@@ -38,10 +38,9 @@ if (props.isLoading) {
     return <><h2>Loading {userName}'s items...</h2></>
 };
 
-// need to figure out how to access logged in user's user_id as it does currently return in the login user object from the login call. 
-const filteredItems = items.filter(item => item.user_id === {userToken})
+// const filteredItems = items.filter(item => item.user_id === {userToken})
 
-console.log(filteredItems);
+// console.log(filteredItems);
 console.log(userID);
 console.log(isOwner);
 console.log(items);
@@ -55,8 +54,6 @@ console.log(items);
                   <Card md="auto" variant="light" bg='light'>
                   <div className="item-card" key={item.id}>
                     <Link to={`${pathname}/${item.id}`}>
-
-                      {/* <img className="img-fluid" src={item.imageURL} alt={item.name}/> */}
                       <Card.Header>
                         <button className='w-100 btn btn-lg btn-warning'><h5>{item.item_name}</h5></button>
                         </Card.Header>
@@ -74,4 +71,11 @@ console.log(items);
   )
 }
 
-export default UserItems
+const mapStateToProps = (state) => {
+  return {
+    items: state.items,
+    isLoading: state.isLoading,
+  }
+}
+
+export default connect(mapStateToProps, {fetchItems})(UserItems)
