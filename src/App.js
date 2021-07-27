@@ -47,7 +47,7 @@ function App(props) {
   };
   
   return (
-    <div className="App">
+    <div className="app">
 
     {/* //   <nav>
     //     <h1>Market Place</h1>
