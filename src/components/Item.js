@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useParams, useRouteMatch, } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import axiosWithAuth from '../common/helpers/axiosWithAuth';
 
 const Item = (props) => {

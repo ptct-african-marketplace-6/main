@@ -7,21 +7,20 @@ import Home from './components/Home'
 import Login from './components/Login/Login'
 import Signup from './components/Signup/Signup'
 import ItemForm from './components/ItemForm'
-import { fetchItems } from './common/actions/itemActions';
+// import { fetchItems } from './common/actions/itemActions';
 import axiosWithAuth from './common/helpers/axiosWithAuth';
 import InnerNavbar from './components/InnerNavbar';
 
 import './App.css';
-import { Container } from 'react-bootstrap'
 
 function App(props) {
   const { push } = useHistory();
   const [data, setData] = useState([])
 
-  const [user, setUser] = useState([{
-    username: localStorage.getItem('username'),
-    // user_id: localStorage.getItem("user_id")
-  }]);
+  // const [user, setUser] = useState([{
+  //   username: localStorage.getItem('username'),
+  //   user_id: localStorage.getItem("userID")
+  // }]);
 
   useEffect(() => {
     axiosWithAuth()

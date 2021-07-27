@@ -1,11 +1,13 @@
 import React from 'react';
-import { Redirect, useHistory } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 function Logout(props) {
-    const { push } = useHistory();
-    localStorage.removeItem('token') 
-    localStorage.removeItem('username')
-    // push('/');
+
+    localStorage.removeItem('token'); 
+    localStorage.removeItem('username');
+    localStorage.removeItem('userID');
+    localStorage.setItem("userID");
+    localStorage.setItem("isOwner");
 
     return <Redirect to='/' />
 };

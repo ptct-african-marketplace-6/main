@@ -1,5 +1,5 @@
 import React, { useState, useEffect} from "react";
-import { useHistory, Redirect } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import * as yup from 'yup'
 import axiosWithAuth from "../../common/helpers/axiosWithAuth";
 
@@ -37,15 +37,16 @@ function Login(props) {
     axiosWithAuth().post("auth/login", formData)
     .then((res) => {
       console.log(res.data)
-      localStorage.setItem("token", formData.password);
-      localStorage.setItem("username", formData.username)
+      localStorage.setItem("token", res.data.token);
+      localStorage.setItem("userID", res.data.id);
+      localStorage.setItem("isOwner", res.data.isOwner);
+      localStorage.setItem("username", res.data.username);
       setFormData({
         username: formData.username,
         // user_id: res.data.id
       });
       console.log("submitted login successfully:", res);
       history.push("/items-list");
-      // return <Redirect to='/items-list'/>
     })
     .catch((err) => {
       console.error("something went wrong with post request: ", {err});
@@ -113,33 +114,3 @@ function Login(props) {
 }
 
 export default Login
-
-//https://drive.google.com/drive/folders/11iiMC9DiRtoqz77CTCeJPpR8zmiALyw0
-
-/* User Object:
-{
-  id: integer
-  username: string
-  password: string 
-  email: string
-  isOwner: boolean
-}
-Item Object:
-{
-  id: integer
-  item_name: string
-  location: string
-  quantity: integer
-  price: float
-  description: string
-  user_id: integer // this references the id in the user table
-} */
-
-/* These are your ENDPOINTS and we list what each will return:
-Users
-[POST] https://team-amazing.herokuapp.com/api/auth/register
-    returns user object
-[POST] https://team-amazing.herokuapp.com/api/auth/login
-    returns token, user object
-Items
-*/

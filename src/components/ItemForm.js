@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import * as yup from 'yup'
 
 import '../App.css';
-import axiosWithAuth from '../common/helpers/axiosWithAuth';
+// import axiosWithAuth from '../common/helpers/axiosWithAuth';
 
 let schema = yup.object().shape({
   item_name: yup.string().required('item name is required'),
@@ -92,7 +92,7 @@ const AddItem = () => {
       <main className="form-signin text-center">
         <form className="text-center" onSubmit={submit}>
           <br/>
-          
+
           <div className="form-floating">
             <input 
               value={form.item_name} 

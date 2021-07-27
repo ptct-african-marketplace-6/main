@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom';
 import * as yup from 'yup'
 import '../App.css';
-import axiosWithAuth from '../common/helpers/axiosWithAuth';
+// import axiosWithAuth from '../common/helpers/axiosWithAuth';
 
 let schema = yup.object().shape({
   item_name: yup.string().required('item name is required'),
@@ -21,7 +21,7 @@ let schema = yup.object().shape({
 const AddItem = () => {
   const { push } = useHistory();
 
-  const userID = localStorage.getItem('username')  
+  // const userID = localStorage.getItem('username')  
 
   const initialValues = {
     item_name: "",

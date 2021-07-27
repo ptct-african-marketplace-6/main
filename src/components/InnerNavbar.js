@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 
 import { Container, Nav, Navbar } from 'react-bootstrap';
 
-import ItemsList from './ItemsList';
+// import ItemsList from './ItemsList';
 import UserItems from './UserItems';
 import AddItem from './AddItem';
 import Logout from './Logout';

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { Container, Card, Row } from 'react-bootstrap';
 import axiosWithAuth from '../common/helpers/axiosWithAuth';
@@ -7,12 +7,12 @@ const UserItems = (props) => {
 const { items } = props
 const { pathname } = useLocation()
 
-const initialValues = {
-  userItems: []
-}
+// const initialValues = {
+//   userItems: []
+// }
 
-const [allItems, setAllItems] = useState('');
-const [userList, setUserList] = useState(initialValues);
+// const [allItems, setAllItems] = useState('');
+// const [userList, setUserList] = useState(initialValues);
 const userToken = localStorage.getItem('token');
 const userName = localStorage.getItem('username');
 
@@ -21,8 +21,8 @@ useEffect(() => {
   // .fetchItems() <--- this action needs more work
     .get('items')
     .then(res => {
-      // console.log(res.data);
-      setAllItems(res.data)
+      console.log(res.data);
+      // setAllItems(res.data)
     })
     .catch(err => {
       console.log(err);

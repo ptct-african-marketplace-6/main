@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
@@ -52,7 +51,6 @@ function SignUp(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    // alert(JSON.stringify(formData))
 
     axiosWithAuth().post('auth/register', formData)
       .then(res => {
@@ -88,7 +86,7 @@ function SignUp(props) {
     <div className='text-center'>
       <main className='form-signin'>
         <form className='text-center' onSubmit={handleSubmit}>
-          <h1 class='h3 mb-3 fw-normal'>
+          <h1 className='h3 mb-3 fw-normal'>
             Welcome! Please sign up using the form below.
           </h1>
 
