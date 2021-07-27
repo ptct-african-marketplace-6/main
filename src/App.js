@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Route, Link, Switch, useHistory } from 'react-router-dom'
+import { connect } from "react-redux";
 
 import ItemsList from './components/ItemsList'
 import Item from './components/Item'
@@ -7,10 +8,9 @@ import Home from './components/Home'
 import Login from './components/Login/Login'
 import Signup from './components/Signup/Signup'
 import ItemForm from './components/ItemForm'
-// import { fetchItems } from './common/actions/itemActions';
 import axiosWithAuth from './common/helpers/axiosWithAuth';
 import InnerNavbar from './components/InnerNavbar';
-
+import { fetchItems } from './common/actions/itemActions'
 import './App.css';
 
 function App(props) {
@@ -18,13 +18,18 @@ function App(props) {
   const [data, setData] = useState([])
 
   // const [user, setUser] = useState([{
-  //   username: localStorage.getItem('username'),
-  //   user_id: localStorage.getItem("userID")
+  // token: localStorage.getItem("token"),
+  // userID: localStorage.getItem("userID"),
+  // isOwner: localStorage.getItem("isOwner"),
+  // username: localStorage.getItem("username")
   // }]);
+
+  // useEffect(() => { fetchItems() }, []);
+  console.log(data)
+
 
   useEffect(() => {
     axiosWithAuth()
-    // .fetchItems() <--- this action needs more work
       .get('items')
       .then(res => {
         // console.log(res.data);
@@ -34,6 +39,7 @@ function App(props) {
         console.log(err);
       })
   }, []);
+  
   if (props.isLoading) {
       return <><h2>Loading items...</h2></>
   } 
@@ -99,4 +105,10 @@ function App(props) {
   )
 }
 
-export default App
+const mapStateToProps = (state) => {
+  return {
+    items: state.items,
+    isLoading: state.isLoading,
+  }
+}
+export default connect(mapStateToProps, {fetchItems})(App);

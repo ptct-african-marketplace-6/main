@@ -20,8 +20,7 @@ let schema = yup.object().shape({
 
 const AddItem = () => {
   const { push } = useHistory();
-
-  // const userID = localStorage.getItem('username')  
+  const userID = localStorage.getItem("userID");
 
   const initialValues = {
     item_name: "",
@@ -29,7 +28,7 @@ const AddItem = () => {
     quantity: "",
     price: "",
     description: "",
-    // user_id: ""  
+    user_id: userID  
   }
 
   const [form, setForm] = useState({
@@ -38,7 +37,7 @@ const AddItem = () => {
     quantity: "",
     price: "",
     description: "",
-    // user_id: ""
+    user_id: userID
   })
 
   const [errors, setErrors] = useState({

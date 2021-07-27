@@ -1,4 +1,4 @@
-import axios from "axios";
+import axiosWithAuth from "../helpers/axiosWithAuth";
 
 export const FETCH_ITEMS = "FETCH_ITEMS";
 export const ADD_ITEM = "ADD_ITEM";
@@ -11,7 +11,7 @@ export const FETCH_ITEMS_ERROR = "FETCH_ITEMS_ERROR";
 export const fetchItems = () => (dispatch) => {
 
   dispatch({ type: FETCH_ITEMS });
-  axios.get("https://sauti-market-bw.herokuapp.com/api/items")
+  axiosWithAuth.get("items")
     .then(res => {
       console.log(res);
       dispatch({ type: FETCH_ITEMS_OK, payload: res.data })
