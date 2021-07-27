@@ -88,15 +88,14 @@ function App(props) {
       </div>
 
       <Switch>
-
-        <Route exact path="/">
+        <Route exact path='/'>
           <Home />
         </Route>
         <Route path="/items-list/:itemID">
           <Item items={data}/>
         </Route>
-        <Route path="/items-list">
-          <ItemsList items={data}/>
+        <Route path='/items-list'>
+          <ItemsList items={data} />
         </Route>
         <Route path="/item-form">
           <ItemForm />
@@ -104,14 +103,12 @@ function App(props) {
         <Route path="/log-in">
           <Login />
         </Route>
-        <Route path="/sign-up">
+        <Route path='/sign-up'>
           <Signup />
         </Route>
-
       </Switch>
-
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
