@@ -20,15 +20,9 @@ const Item = (props) => {
       });
   }, [itemID])
 
-  // const item = items.find(item => item.id === itemID)
-
   if(!item) return <div><br/>Loading Item Details...</div>
 
   const { item_name, price, location, quantity, description } = item;
-
-  // if(!item) {
-  //   return <div>Loading...</div>
-  // }
   
   return (
     <div className="container-fluid items-list-container">

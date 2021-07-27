@@ -48,18 +48,6 @@ function App(props) {
   
   return (
     <div className="app">
-
-    {/* //   <nav>
-    //     <h1>Market Place</h1>
-    //     <div className="nav-links">
-    //       <Link to="/"><button className='w-auto btn btn-success'>Home</button></Link>{' '}
-    //       <Link to="/items-list"><button className='w-auto btn btn-success'>Shop</button></Link>{' '} */}
-          {/* <Link to="/item-form"><button className='w-auto btn btn-success'>Sell</button></Link>{' '} */}
-          {/* <Link to="/log-in"><button className='w-auto btn btn-info'>Log In</button></Link>{' '}
-          <Link to="/sign-up"><button className='w-auto btn btn-info'>Sign Up</button></Link>{' '}
-          <Link to="/" onClick={logout}><button className='w-auto btn btn-danger'>Logout</button></Link> */}
-
-    {/* <div className="App"> */}
       <div className="container-fluid">
         <div className="row d-flex align-items-center">
           <div className="col-md-6 col-12 title-container">

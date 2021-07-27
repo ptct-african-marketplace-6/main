@@ -4,7 +4,6 @@ import { useHistory } from 'react-router-dom';
 import * as yup from 'yup'
 
 import '../App.css';
-// import axiosWithAuth from '../common/helpers/axiosWithAuth';
 
 let schema = yup.object().shape({
   item_name: yup.string().required('item name is required'),
@@ -57,14 +56,11 @@ const AddItem = () => {
   const [disabled, setDisabled] = useState(true);
 
   const handleChange = (e) => {
-    // const { name, type } = e.target
     setForm({
       ...form,
       [e.target.name]: e.target.value
     })
-    // console.log(form)
     setFormErrors(e.target.name, e.target.value)
-    // console.log(errors)
   }
 
   const submit = (e) => {
@@ -88,79 +84,6 @@ const AddItem = () => {
   }, [form])
 
   return (
-    // <div className="text-center">
-    //   <main className="form-signin text-center">
-    //     <form className="text-center" onSubmit={submit}>
-    //       <br/>
-
-    //       <div className="form-floating">
-    //         <input 
-    //           value={form.item_name} 
-    //           name="item_name" 
-    //           type="text" 
-    //           className="form-control"
-    //           id="floatingInput"
-    //           onChange={handleChange}
-    //         />
-    //       <label htmlFor="floatingInput">Item Name</label>
-    //       </div>
-    //       <br/>
-
-    //       <div className="form-floating">
-    //         <input 
-    //           value={form.location} 
-    //           name="location" 
-    //           type="text" 
-    //           className="form-control"
-    //           id="floatingInput"
-    //           onChange={handleChange}
-    //         />
-    //       <label htmlFor="floatingInput">Location</label>
-    //       </div>          
-    //       <br/>
-
-    //       <div className="form-floating">
-    //         <input 
-    //           value={form.quantity} 
-    //           name="quantity" 
-    //           type="text" 
-    //           className="form-control"
-    //           id="floatingInput"
-    //           onChange={handleChange}
-    //         />
-    //       <label htmlFor="floatingInput">Quantity</label>
-    //       </div>
-    //       <br/>
-
-    //       <div className="form-floating">
-    //         <input 
-    //           value={form.price} 
-    //           name="price" 
-    //           type="text" 
-    //           className="form-control"
-    //           id="floatingInput"
-    //           onChange={handleChange}
-    //         />
-    //       <label htmlFor="floatingInput">Price</label>
-    //       </div>
-    //       <br/>
-
-    //       <div className="form-floating">
-    //         <input 
-    //           value={form.description} 
-    //           name="description" 
-    //           type="text" 
-    //           className="form-control"
-    //           id="floatingInput"
-    //           onChange={handleChange}
-    //           />
-    //       <label htmlFor="floatingInput">Description</label>
-    //       </div>
-    //       <br/>
-
-    //       <button className="w-100 btn btn-lg btn-success" disabled={disabled}>Submit</button>
-    //     </form>
-    //   </main>
     <div className="container-fluid form-wrapper">
       <div className="row mx-auto">
         <div className="col-12 d-flex justify-content-center">

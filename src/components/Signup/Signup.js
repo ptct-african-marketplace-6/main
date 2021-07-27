@@ -101,10 +101,10 @@ export default function SignUp(props) {
       .post('auth/register', formData)
       .then((res) => {
         console.log(res.data)
-        localStorage.setItem('token', formData.password)
-        // setFormData({
-        //   username: formData.username
-        // })
+        localStorage.setItem("token", res.data.token);
+        localStorage.setItem("userID", res.data.id);
+        localStorage.setItem("isOwner", res.data.isOwner);
+        localStorage.setItem("username", res.data.username);
         push('/')
       })
       .catch((err) => {
@@ -131,66 +131,6 @@ export default function SignUp(props) {
   })
 
   return (
-    // <div className='container-fluid container-fluid form-wrapper'>
-    //   <main className='form-signin'>
-    //     <form className='text-center' onSubmit={handleSubmit}>
-    //       <h1 className='h3 mb-3 fw-normal'>
-    //         Welcome! Please sign up using the form below.
-    //       </h1>
-
-    //       <div className='form-floating'>
-    //         <input
-    //           name='username'
-    //           className='form-control'
-    //           id='floatingInput'
-    //           placeholder='John Smith'
-    //           type='text'
-    //           value={formData.username}
-    //           onChange={handleChange}
-    //         />
-    //         <label htmlFor='floatingInput'>Name</label>
-    //       </div>
-
-    //       <div className='form-floating'>
-    //         <input
-    //           name='email'
-    //           id='floatingEmail'
-    //           type='email'
-    //           placeholder='john.smith@gmail.com'
-    //           className='form-control'
-    //           value={formData.email}
-    //           onChange={handleChange}
-    //         />
-    //         <label htmlFor='floatingEmail'>Email</label>
-    //       </div>
-
-    //       <div className='form-floating'>
-    //         <input
-    //           name='password'
-    //           type='password'
-    //           className='form-control'
-    //           placeholder='******'
-    //           value={formData.password}
-    //           id='floatingPassword'
-    //           onChange={handleChange}
-    //         />
-    //       <label htmlFor='floatingPassword'>Password</label>
-    //       </div>
-
-    //       <div className='checkbox mb-3 row'>
-    //         <input
-    //           name='owner'
-    //           id='floatingOwner'
-    //           type='checkbox'
-    //           checked={formData.isOwner}
-    //           onChange={handleChange}
-    //         />
-    //       <label htmlFor='floatingOwner'>Owner?</label>
-    //       </div>
-
-    //       <button
-    //         className='w-100 btn btn-lg btn-primary'
-
     <Container component='main' maxWidth='xs'>
       <CssBaseline />
       <div className={classes.paper}>

@@ -7,8 +7,6 @@ import Avatar from '@material-ui/core/Avatar'
 import Button from '@material-ui/core/Button'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import TextField from '@material-ui/core/TextField'
-import FormControlLabel from '@material-ui/core/FormControlLabel'
-import Checkbox from '@material-ui/core/Checkbox'
 import Link from '@material-ui/core/Link'
 import Grid from '@material-ui/core/Grid'
 import Box from '@material-ui/core/Box'
@@ -94,7 +92,6 @@ export default function Login(props) {
       localStorage.setItem("username", res.data.username);
       setFormData({
         username: formData.username,
-        // user_id: res.data.id
       });
       console.log("submitted login successfully:", res);
       history.push("/items-list");
@@ -123,46 +120,6 @@ export default function Login(props) {
   })
 
   return (
-    // <>
-    //   <div className='container-fluid container-fluid form-wrapper'>
-    //     <div className='form-signin'>
-    //       <br/>
-    //       <form 
-    //         className='text-center'
-    //         onSubmit={handleSubmit}
-    //       >
-    //       <h1 className='h3 mb-3 fw-normal'>
-    //         Welcome! Please log in using the form below.
-    //       </h1>
-    //       <div className='form-floating'>
-    //         <input
-    //           name='username'
-    //           className='form-control'
-    //           id='floatingInput'
-    //           type='text'
-    //           value={formData.username}
-    //           onChange={handleChange}
-    //         />
-    //         <label htmlFor='floatingInput'>Name</label>
-    //       </div>
-
-    //       <div className='form-floating'>
-    //         <input
-    //           name='password'
-    //           type='password'
-    //           className='form-control'
-    //           value={formData.password}
-    //           id='floatingPassword'
-    //           onChange={handleChange}
-    //         />
-    //       <label htmlFor='floatingPassword'>Password</label>
-    //       </div>
-    //         <br/>
-    //         <div className='row'><br/>
-    //           <button className="w-100 btn btn-lg btn-success" disabled={disabledButton}>Submit!</button>
-    //         </div>
-    //       </form>
-    //     </div>
     <Container component='main' maxWidth='xs'>
       <CssBaseline />
       <div className={classes.paper}>
@@ -230,6 +187,3 @@ export default function Login(props) {
     </Container>
   )
 }
-
-// Alternate submit button styling
-{/* <button className="btn my-3 mx-auto" disabled={disabledButton}>Suubmit!</button> */}
