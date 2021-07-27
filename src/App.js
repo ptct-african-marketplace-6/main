@@ -27,14 +27,10 @@ function App(props) {
   //   }
   // ];
 
-  // componentDidMount(() => {
-  //   this.props.fetchItems();
-  // });
 
   useEffect(() => { props.fetchItems(); }, []);
 
   console.log(props.items)
-  // console.log(ItemsArray);
 
 
   // useEffect(() => {
@@ -118,8 +114,8 @@ function App(props) {
 
 const mapStateToProps = (state) => {
   return {
-    items: state.props.items,
-    isLoading: state.props.isLoading,
+    items: state.items,
+    isLoading: state.isLoading,
   }
 }
 export default connect(mapStateToProps, {fetchItems})(App);
