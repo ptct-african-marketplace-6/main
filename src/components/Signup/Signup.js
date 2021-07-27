@@ -114,12 +114,14 @@ export default function SignUp(props) {
 
   const handleChange = (e) => {
     const { type } = e.target
+    console.log('TYPE', type)
     const valueToUse = type === 'checkbox' ? 'checked' : 'value'
     setFormData({
       ...formData,
       [e.target.name]: e.target[valueToUse],
     })
-    console.log(formData)
+    console.log('FORM DATA', formData)
+    console.log('E.TARGET.VALUETOUSE', e.target[valueToUse])
 
     setFormErrors(e.target.name, e.target[valueToUse])
   }
@@ -186,10 +188,8 @@ export default function SignUp(props) {
                 control={
                   <Checkbox
                     checked={formData.isOwner}
-                    // onChange={handleChange}
-                    onChange={(e) =>
-                      console.log('CHECKBOX PRESSED', e.target.type)
-                    }
+                    name='isOwner'
+                    onChange={handleChange}
                     color='primary'
                   />
                 }
@@ -204,12 +204,13 @@ export default function SignUp(props) {
             color='primary'
             disabled={disabledButton}
             className={classes.submit}
+            onClick={handleSubmit}
           >
             Sign Up
           </Button>
           <Grid container justifyContent='flex-end'>
             <Grid item>
-              <Link href='#' variant='body2'>
+              <Link href='/log-in' variant='body2'>
                 Already have an account? Sign in
               </Link>
             </Grid>
@@ -222,46 +223,3 @@ export default function SignUp(props) {
     </Container>
   )
 }
-
-// <form className='text-center' onSubmit={handleSubmit}>
-//   <h1>Welcome! Please sign up using the form below.</h1>
-
-//   <label for='floatingInput' className='form-label floating-label'>
-//     Name
-//   </label>
-//   <TextField
-//     name='username'
-//     value={formData.username}
-//     onInput={handleChange}
-//   />
-
-//   <TextField
-//     name='email'
-//     id='floatingEmail'
-//     value={formData.email}
-//     onInput={handleChange}
-//   />
-
-//   <TextField
-//     name='password'
-//     id='floatingPassword'
-//     value={formData.password}
-//     onChange={handleChange}
-//   />
-
-//   <label for='floatingisOwner'>Owner?</label>
-//   <onInput
-//     name='isOwner'
-//     id='floatingPassword'
-//     checked={formData.isOwner}
-//     onInput={handleChange}
-//   />
-
-//   <Button
-//     id='submitBtn'
-//     className='w-100 btn btn-lg btn-primary'
-//     disabled={disabledButton}
-//   >
-//     Submit!
-//   </Button>
-// </form>
