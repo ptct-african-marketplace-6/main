@@ -17,7 +17,7 @@ function SignUp(props) {
     password: '',
     isOwner: false,
   })
-
+ 
   const [errors, setErrors] = useState({
     username: '',
     email: '',
