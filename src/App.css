@@ -1,38 +1,110 @@
-.App {
+@import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Zen+Loop&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap");
+.app .title-container h1 {
+  font-family: 'Abril Fatface', cursive;
+  color: #0A2A58;
+  font-size: 3rem;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+@media (min-width: 768px) {
+  .app .title-container h1 {
+    text-align: left;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.app nav .nav-links a {
+  font-family: 'Open Sans Condensed', sans-serif;
+  color: #0A2A58;
+  font-size: 1.5rem;
+  text-decoration: none;
+  font-weight: 900;
+  text-transform: uppercase;
 }
 
-.App-link {
-  color: #61dafb;
+.app .btn {
+  text-decoration: none;
+  font-family: 'Abril Fatface', cursive;
+  color: #0A2A58;
+  font-size: 1.5rem;
+  text-decoration: none;
+  font-weight: 900;
+  background-color: #ffffff;
+  max-width: 300px;
+  width: 100%;
+  border-radius: 25px;
+  border: 1px solid #0A2A58;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+.app .home-wrapper {
+  background-image: url("./assets/pink-brick.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  height: 100vh;
+}
+
+.app .items-list-container {
+  background-color: #99BFB3;
+}
+
+.app .items-list-container .row {
+  max-width: 1400px;
+}
+
+.app .items-list-container .row .item-card {
+  background-color: #ffffff;
+  max-width: 400px;
+  min-height: 200px;
+  width: 100%;
+  border-radius: 15px;
+}
+
+.app .items-list-container .row .item-card a {
+  text-decoration: none;
+}
+
+.app .items-list-container .row .item-card p {
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 1.5rem;
+  text-decoration: none;
+  color: #000000;
+  text-align: center;
+}
+
+.app .form-wrapper {
+  background-color: #99BFB3;
+}
+
+.app .form-wrapper .row {
+  max-width: 1400px;
+}
+
+.app .form-wrapper .row form {
+  background-color: #ffffff;
+  border-radius: 25px;
+}
+
+.app .form-wrapper .row form label {
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 1.5rem;
+  text-decoration: none;
+  color: #0A2A58;
+  text-align: left;
+}
+
+.app .form-wrapper .row form input {
+  min-width: 250px;
+  width: 100%;
+  border-radius: 10px;
+  border: 0.5px solid #0A2A58;
+}
+
+@media (min-width: 768px) {
+  .app .form-wrapper .row form input {
+    min-width: 500px;
   }
 }
+/*# sourceMappingURL=App.css.map */
