@@ -24,6 +24,10 @@ const Item = (props) => {
 
   const { item_name, price, location, quantity, description } = item;
 
+  // if(!item) {
+  //   return <div>Loading...</div>
+  // }
+  
   return (
     <div>
       <h2>{item_name}</h2>
