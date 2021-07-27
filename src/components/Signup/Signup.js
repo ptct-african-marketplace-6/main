@@ -1,15 +1,58 @@
-import axios from 'axios'
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import * as yup from 'yup'
 import axiosWithAuth from '../../common/helpers/axiosWithAuth'
+import Avatar from '@material-ui/core/Avatar'
+import Button from '@material-ui/core/Button'
+import CssBaseline from '@material-ui/core/CssBaseline'
+import TextField from '@material-ui/core/TextField'
+import FormControlLabel from '@material-ui/core/FormControlLabel'
+import Checkbox from '@material-ui/core/Checkbox'
+import Link from '@material-ui/core/Link'
+import Grid from '@material-ui/core/Grid'
+import Box from '@material-ui/core/Box'
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
+import Typography from '@material-ui/core/Typography'
+import { makeStyles } from '@material-ui/core/styles'
+import Container from '@material-ui/core/Container'
 
-import './signup.css'
+function Copyright() {
+  return (
+    <Typography variant='body2' color='textSecondary' align='center'>
+      {'Copyright © '}
+      <Link color='inherit' href='https://material-ui.com/'>
+        Your Website
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
+  )
+}
 
-function SignUp(props) {
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    marginTop: theme.spacing(8),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main,
+  },
+  form: {
+    width: '100%', // Fix IE 11 issue.
+    marginTop: theme.spacing(3),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
+}))
+
+export default function SignUp(props) {
   // Will be true if bootstrap is loaded, false otherwise
-
+  const classes = useStyles()
   const { push } = useHistory()
 
   const [disabledButton, setDisabledButton] = useState(true)
@@ -86,73 +129,139 @@ function SignUp(props) {
   })
 
   return (
-    <div className='text-center'>
-      <main className='form-signup text-center'>
-        <form className='text-center' onSubmit={handleSubmit}>
-          <h1 className='h3 mb-3 fw-normal'>
-            Welcome! Please sign up using the form below.
-          </h1>
-          <div className='form-floating'>
-            <label for='floatingInput'>Name</label>
-            <input
-              name='username'
-              className='form-control'
-              id='floatingUser'
-              placeholder='John Smith'
-              type='text'
-              value={formData.username}
-              onChange={handleChange}
-            />
-          </div>
+    <Container component='main' maxWidth='xs'>
+      <CssBaseline />
+      <div className={classes.paper}>
+        <Avatar className={classes.avatar}>
+          <LockOutlinedIcon />
+        </Avatar>
+        <Typography component='h1' variant='h5'>
+          Sign up
+        </Typography>
+        <form className={classes.form} noValidate>
+          <Grid container spacing={2}>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                autoComplete='user'
+                name='username'
+                variant='outlined'
+                required
+                fullWidth
+                id='username'
+                label='Name'
+                value={formData.username}
+                onChange={handleChange}
+                autoFocus
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                variant='outlined'
+                required
+                fullWidth
+                id='email'
+                label='Email'
+                value={formData.email}
+                onChange={handleChange}
+                name='email'
+                autoComplete='email'
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant='outlined'
+                required
+                fullWidth
+                id='password'
+                value={formData.password}
+                onChange={handleChange}
+                label='Password'
+                name='password'
+                autoComplete='password'
+              />
+            </Grid>
 
-          <div className='form-floating'>
-            <label for='floatingEmail'>Email</label>
-            <input
-              name='email'
-              className='form-control'
-              id='floatingEmail'
-              placeholder='john.smith@gmail.com'
-              type='text'
-              value={formData.email}
-              onChange={handleChange}
-            />
-          </div>
-
-          <div className='form-floating'>
-            <label for='floatingPassword'>Password</label>
-            <input
-              name='password'
-              className='form-control'
-              id='floatingPassword'
-              placeholder='******'
-              type='password'
-              value={formData.password}
-              onChange={handleChange}
-            />
-          </div>
-
-          <div className='checkbox mb-3 row'>
-            <label for='floatingisOwner'>Owner?</label>
-            <input
-              name='isOwner'
-              id='floatingisOwner'
-              type='checkbox'
-              checked={formData.isOwner}
-              onChange={handleChange}
-            />
-          </div>
-
-          <button
-            id='submitBtn'
-            className='w-100 btn btn-lg btn-primary'
+            <Grid item xs={12}>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={formData.isOwner}
+                    // onChange={handleChange}
+                    onChange={(e) =>
+                      console.log('CHECKBOX PRESSED', e.target.type)
+                    }
+                    color='primary'
+                  />
+                }
+                label="I'm an Owner"
+              />
+            </Grid>
+          </Grid>
+          <Button
+            type='submit'
+            fullWidth
+            variant='contained'
+            color='primary'
             disabled={disabledButton}
+            className={classes.submit}
           >
-            Submit!
-          </button>
+            Sign Up
+          </Button>
+          <Grid container justifyContent='flex-end'>
+            <Grid item>
+              <Link href='#' variant='body2'>
+                Already have an account? Sign in
+              </Link>
+            </Grid>
+          </Grid>
         </form>
-      </main>
-    </div>
+      </div>
+      <Box mt={5}>
+        <Copyright />
+      </Box>
+    </Container>
   )
 }
 
-export default SignUp
+// <form className='text-center' onSubmit={handleSubmit}>
+//   <h1>Welcome! Please sign up using the form below.</h1>
+
+//   <label for='floatingInput' className='form-label floating-label'>
+//     Name
+//   </label>
+//   <TextField
+//     name='username'
+//     value={formData.username}
+//     onInput={handleChange}
+//   />
+
+//   <TextField
+//     name='email'
+//     id='floatingEmail'
+//     value={formData.email}
+//     onInput={handleChange}
+//   />
+
+//   <TextField
+//     name='password'
+//     id='floatingPassword'
+//     value={formData.password}
+//     onChange={handleChange}
+//   />
+
+//   <label for='floatingisOwner'>Owner?</label>
+//   <onInput
+//     name='isOwner'
+//     id='floatingPassword'
+//     checked={formData.isOwner}
+//     onInput={handleChange}
+//   />
+
+//   <Button
+//     id='submitBtn'
+//     className='w-100 btn btn-lg btn-primary'
+//     disabled={disabledButton}
+//   >
+//     Submit!
+//   </Button>
+// </form>

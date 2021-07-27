@@ -1,12 +1,10 @@
-import React, { useState, useEffect} from "react";
-import { useHistory } from "react-router-dom";
+import React, { useState, useEffect } from 'react'
+import { useHistory } from 'react-router-dom'
 import * as yup from 'yup'
-import axiosWithAuth from "../../common/helpers/axiosWithAuth";
-
-import './login.css';
+import axiosWithAuth from '../../common/helpers/axiosWithAuth'
 
 function Login(props) {
-  const { push } = useHistory();
+  const { push } = useHistory()
 
   const [disabledButton, setDisabledButton] = useState(true)
   const [formData, setFormData] = useState({
@@ -34,25 +32,26 @@ function Login(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    axiosWithAuth().post("auth/login", formData)
-    .then((res) => {
-      localStorage.setItem("token", formData.password);
-      setFormData({
-        username: formData.username
-      });
-      console.log("submitted login successfully:", res);
-      push("/items-list");
-    })
-    .catch((err) => {
-      console.error("something went wrong with post request: ", {err});
-    })
+    axiosWithAuth()
+      .post('auth/login', formData)
+      .then((res) => {
+        localStorage.setItem('token', formData.password)
+        setFormData({
+          username: formData.username,
+        })
+        console.log('submitted login successfully:', res)
+        push('/items-list')
+      })
+      .catch((err) => {
+        console.error('something went wrong with post request: ', { err })
+      })
   }
 
   const handleChange = (e) => {
     const { username } = e.target
     setFormData({
-        ...formData,
-        [e.target.name]: e.target.value,
+      ...formData,
+      [e.target.name]: e.target.value,
     })
     // console.log(formData)
     setFormErrors(username, e.target.value)
@@ -81,7 +80,7 @@ function Login(props) {
                 />
               </label>
             </div>
-            <br/>
+            <br />
             <div className='row'>
               <label>
                 Password&nbsp;
@@ -93,7 +92,8 @@ function Login(props) {
                 />
               </label>
             </div>
-            <div className='row'><br/>
+            <div className='row'>
+              <br />
               <button disabled={disabledButton}>Submit!</button>
             </div>
           </form>
