@@ -6,7 +6,7 @@ import axiosWithAuth from "../../common/helpers/axiosWithAuth";
 import './login.css';
 
 function Login(props) {
-  const { push } = useHistory();
+  const history = useHistory();
 
   const [disabledButton, setDisabledButton] = useState(true)
   const [formData, setFormData] = useState({
@@ -20,7 +20,7 @@ function Login(props) {
   })
 
   const formSchema = yup.object().shape({
-    username: yup.string().required('Pleae include your username.'),
+    username: yup.string().required('Please include your username.'),
     password: yup.string().required('Password is Required'),
   })
 
@@ -36,12 +36,17 @@ function Login(props) {
     e.preventDefault()
     axiosWithAuth().post("auth/login", formData)
     .then((res) => {
-      localStorage.setItem("token", formData.password);
+      console.log(res.data)
+      localStorage.setItem("token", res.data.token);
+      localStorage.setItem("userID", res.data.id);
+      localStorage.setItem("isOwner", res.data.isOwner);
+      localStorage.setItem("username", res.data.username);
       setFormData({
-        username: formData.username
+        username: formData.username,
+        // user_id: res.data.id
       });
       console.log("submitted login successfully:", res);
-      push("/items-list");
+      history.push("/items-list");
     })
     .catch((err) => {
       console.error("something went wrong with post request: ", {err});
@@ -64,37 +69,42 @@ function Login(props) {
 
   return (
     <>
-      <div>
-        <div className='App'>
-          <form
+      <div className='container-fluid container-fluid form-wrapper'>
+        <div className='form-signin'>
+          <br/>
+          <form 
+            className='text-center'
             onSubmit={handleSubmit}
-            className='d-flex flex-column container-fluid col-md-auto'
           >
-            <div className='row'>
-              <label>
-                Username&nbsp;
-                <input
-                  name='username'
-                  type='text'
-                  value={formData.username}
-                  onChange={handleChange}
-                />
-              </label>
-            </div>
+          <h1 className='h3 mb-3 fw-normal'>
+            Welcome! Please log in using the form below.
+          </h1>
+          <div className='form-floating'>
+            <input
+              name='username'
+              className='form-control'
+              id='floatingInput'
+              type='text'
+              value={formData.username}
+              onChange={handleChange}
+            />
+            <label htmlFor='floatingInput'>Name</label>
+          </div>
+
+          <div className='form-floating'>
+            <input
+              name='password'
+              type='password'
+              className='form-control'
+              value={formData.password}
+              id='floatingPassword'
+              onChange={handleChange}
+            />
+          <label htmlFor='floatingPassword'>Password</label>
+          </div>
             <br/>
-            <div className='row'>
-              <label>
-                Password&nbsp;
-                <input
-                  name='password'
-                  type='password'
-                  value={formData.password}
-                  onChange={handleChange}
-                />
-              </label>
-            </div>
             <div className='row'><br/>
-              <button disabled={disabledButton}>Submit!</button>
+              <button className="w-100 btn btn-lg btn-success" disabled={disabledButton}>Submit!</button>
             </div>
           </form>
         </div>
@@ -105,32 +115,5 @@ function Login(props) {
 
 export default Login
 
-//https://drive.google.com/drive/folders/11iiMC9DiRtoqz77CTCeJPpR8zmiALyw0
-
-/* User Object:
-{
-  id: integer
-  username: string
-  password: string 
-  email: string
-  isOwner: boolean
-}
-Item Object:
-{
-  id: integer
-  item_name: string
-  location: string
-  quantity: integer
-  price: float
-  description: string
-  user_id: integer // this references the id in the user table
-} */
-
-/* These are your ENDPOINTS and we list what each will return:
-Users
-[POST] https://team-amazing.herokuapp.com/api/auth/register
-    returns user object
-[POST] https://team-amazing.herokuapp.com/api/auth/login
-    returns token, user object
-Items
-*/
+// Alternate submit button styling
+{/* <button className="btn my-3 mx-auto" disabled={disabledButton}>Suubmit!</button> */}
