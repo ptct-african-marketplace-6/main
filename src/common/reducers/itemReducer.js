@@ -1,4 +1,4 @@
-import { FETCH_ITEMS, ADD_ITEM, EDIT_ITEM, DELETE_ITEM, FETCH_ITEMS_OK } from "../actions/itemActions"
+import { FETCH_ITEMS, ADD_ITEM, EDIT_ITEM, DELETE_ITEM, FETCH_ITEMS_OK, API_START, API_SUCCESS } from "../actions/itemActions"
 
 const initialState = {
   items: [],
@@ -8,17 +8,18 @@ const initialState = {
 
 export const itemReducer = (state = initialState, action) => {
   switch (action.type) {
-    case FETCH_ITEMS:
+    case API_START:
       return {
         ...state,
         isLoading: true
       }
-    case FETCH_ITEMS_OK:
+    case API_SUCCESS:
       return {
         ...state,
         items: action.payload,
         isLoading: false
       }
+
     case ADD_ITEM:
       const newItem = {
         item_name: action.payload.item_name,
@@ -33,13 +34,13 @@ export const itemReducer = (state = initialState, action) => {
         items: [...state.items, newItem]
       }
     case EDIT_ITEM:
-      // const editItem = {
-      //   item_name: action.payload.item_name,
-      //   location: action.payload.location,
-      //   quantity: action.payload.quantity,
-      //   price: action.payload.price,
-      //   description: action.payload.description,
-      // }
+      const editItem = {
+        item_name: action.payload.item_name,
+        location: action.payload.location,
+        quantity: action.payload.quantity,
+        price: action.payload.price,
+        description: action.payload.description,
+      }
       return {
         
         // This code may need more work ... this is just a templated version to begin with

@@ -1,29 +1,30 @@
 import axiosWithAuth from "../helpers/axiosWithAuth";
 
-export const FETCH_ITEMS = "FETCH_ITEMS";
+export const API_START = "API_START";
 export const ADD_ITEM = "ADD_ITEM";
 export const EDIT_ITEM = "EDIT_ITEM";
 export const DELETE_ITEM = "EDIT_ITEM";
 
-export const FETCH_ITEMS_OK = "FETCH_ITEMS_OK";
-export const FETCH_ITEMS_ERROR = "FETCH_ITEMS_ERROR";
+export const API_SUCCESS = "API_SUCCESS";
+export const API_ERROR = "API_ERROR";
 
 export const fetchItems = () => (dispatch) => {
 
-  dispatch({ type: FETCH_ITEMS });
+  dispatch({ type: API_START });
   axiosWithAuth().get("items")
     .then(res => {
       console.log(res);
-      dispatch({ type: FETCH_ITEMS_OK, payload: res.data })
+      dispatch({ type: API_SUCCESS, payload: res.data })
     })
     .catch(err => {
       console.log(err);
-      dispatch({ type: FETCH_ITEMS_ERROR, payload: err })
+      dispatch({ type: API_ERROR, payload: err })
     })
 }
 
 export const addItem = () => {
   return({type: ADD_ITEM});
+
 }
 
 export const editItem = (id) => {

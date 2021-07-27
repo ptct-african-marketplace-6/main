@@ -118,4 +118,5 @@ const mapStateToProps = (state) => {
     isLoading: state.isLoading,
   }
 }
+
 export default connect(mapStateToProps, {fetchItems})(App);
