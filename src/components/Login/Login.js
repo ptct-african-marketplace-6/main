@@ -69,7 +69,7 @@ function Login(props) {
 
   return (
     <>
-      <div className='text-center'>
+      <div className='container-fluid container-fluid form-wrapper'>
         <div className='form-signin'>
           <br/>
           <form 
@@ -114,3 +114,6 @@ function Login(props) {
 }
 
 export default Login
+
+// Alternate submit button styling
+{/* <button className="btn my-3 mx-auto" disabled={disabledButton}>Suubmit!</button> */}

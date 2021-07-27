@@ -83,7 +83,7 @@ function SignUp(props) {
   })
 
   return (
-    <div className='text-center'>
+    <div className='container-fluid container-fluid form-wrapper'>
       <main className='form-signin'>
         <form className='text-center' onSubmit={handleSubmit}>
           <h1 className='h3 mb-3 fw-normal'>
