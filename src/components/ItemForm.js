@@ -166,22 +166,22 @@ const AddItem = () => {
         <div className="col-12 d-flex justify-content-center">
           <form onSubmit={submit} className="d-flex flex-column justify-content-center p-3 m-3">
 
-            <label className="py-2" for="item_name">Item Name</label>
+            <label className="py-2" htmlFor="item_name">Item Name</label>
             <input value={form.item_name} name="item_name" type="text" onChange={handleChange}/>
 
-            <label className="py-2" for="location">Location</label>
+            <label className="py-2" htmlFor="location">Location</label>
             <input value={form.location} name="location" type="text" onChange={handleChange}/>
 
-            <label className="py-2" for="quantity">Quantity</label>
+            <label className="py-2" htmlFor="quantity">Quantity</label>
             <input value={form.quantity} name="quantity" type="text" onChange={handleChange}/>
 
-            <label className="py-2" for="price">Price</label>
+            <label className="py-2" htmlFor="price">Price</label>
             <input value={form.price} name="price" type="text" onChange={handleChange}/>
 
-            <label className="py-2" for="description">Description</label>
+            <label className="py-2" htmlFor="description">Description</label>
             <input value={form.description} name="description" type="description" onChange={handleChange}/>
 
-            <button className="btn my-3 mx-auto">Submit</button>
+            <button className="btn my-3 mx-auto" disabled={disabled}>Submit</button>
 
           </form>
         </div>

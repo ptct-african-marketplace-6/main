@@ -166,24 +166,6 @@ const AddItem = () => {
           <label htmlFor="floatingInput">Description</label>
           </div>
           <br/>
-
-          {/* tried adding a drop down list for locations, does not work with current formSchema validation */}
-
-          {/* <div className="form-input">
-            <label>Location
-              <select value={form.location} onChange={handleChange}>
-                <option value="Kenya">Kenya</option>
-                <option value="Uganda">Uganda</option>
-                <option value="Tanzania">Tanzania</option>
-                <option value="Rwanda">Rwanda</option>
-                <option value="South Sudan">South Sudan</option>
-                <option value="Burundi">Burundi</option>
-                <option value="DRC">DRC</option>
-              </select>
-            </label>
-          </div>          
-          <br/><br/> */}
-
           <button className="w-100 btn btn-lg btn-success" disabled={disabled}>Submit</button>
         </form>
       </main>
