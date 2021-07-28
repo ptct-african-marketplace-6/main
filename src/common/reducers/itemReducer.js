@@ -6,7 +6,7 @@ const initialState = {
   error: ''
 }
 
-export const itemReducer = (state = initialState, action) => {
+const itemReducer = (state = initialState, action) => {
   switch (action.type) {
     case API_START:
       return {  
@@ -54,5 +54,6 @@ export const itemReducer = (state = initialState, action) => {
     default:
       return state;  
   }
-
 }
+
+export default itemReducer;

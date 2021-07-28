@@ -16,7 +16,7 @@ import './App.css';
 
 function App(props) {
   const { push } = useHistory();
-  const [data, setData] = useState([])
+  // const [data, setData] = useState([])
 
   // const userInfo = [
   //   {
@@ -30,8 +30,8 @@ function App(props) {
 
   useEffect(() => { props.fetchItems(); }, []);
 
-  console.log(data)
-  console.log(props.items)
+  // console.log(data)
+  // console.log(props.items)
   // useEffect(() => {
   //   axiosWithAuth()
   //     .get('items')

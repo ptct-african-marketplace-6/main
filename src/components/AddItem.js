@@ -59,15 +59,11 @@ const AddItem = () => {
   const [disabled, setDisabled] = useState(true);
 
   const handleChange = (e) => {
-    // const { name, type } = e.target
     setForm({
       ...form,
       [e.target.name]: e.target.value,
-      // user_id: userID
     })
-    // console.log(form)
     setFormErrors(e.target.name, e.target.value)
-    // console.log(errors)
   }
 
   const submit = (e) => {
@@ -91,7 +87,7 @@ const AddItem = () => {
   }, [form])
 
   return (
-    <div className="text-center">
+    <div className="text-center form-wrapper">
       <main className="form-signin text-center">
         <form className="text-center" onSubmit={submit}>
         <h1 className='h3 mb-3 fw-normal'>
