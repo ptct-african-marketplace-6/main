@@ -28,22 +28,21 @@ function App(props) {
   // ];
 
 
-  // useEffect(() => { props.fetchItems(); }, []);
+  useEffect(() => { props.fetchItems(); }, []);
 
   console.log(data)
-
-
-  useEffect(() => {
-    axiosWithAuth()
-      .get('items')
-      .then(res => {
-        // console.log(res.data);
-        setData(res.data)
-      })
-      .catch(err => {
-        console.log(err);
-      })
-  }, []);
+  console.log(props.items)
+  // useEffect(() => {
+  //   axiosWithAuth()
+  //     .get('items')
+  //     .then(res => {
+  //       // console.log(res.data);
+  //       setData(res.data)
+  //     })
+  //     .catch(err => {
+  //       console.log(err);
+  //     })
+  // }, []);
   
   if (props.isLoading) {
       return <><h2>Loading items...</h2></>
@@ -84,7 +83,7 @@ function App(props) {
       <div>
         {
           localStorage.getItem('token') && 
-            <InnerNavbar items={data}/>
+            <InnerNavbar items={props.items}/>
         }
       </div>
 
@@ -93,10 +92,10 @@ function App(props) {
           <Home />
         </Route>
         <Route path="/items-list/:itemID">
-          <Item items={data}/>
+          <Item items={props.items}/>
         </Route>
         <Route path='/items-list'>
-          <ItemsList items={data} />
+          <ItemsList items={props.items} />
         </Route>
         <Route path="/item-form">
           <ItemForm />
@@ -112,12 +111,12 @@ function App(props) {
   )
 }
 
-// const mapStateToProps = (state) => {
-//   return {
-//     items: state.items,
-//     isLoading: state.isLoading,
-//   }
-// }
+const mapStateToProps = (state) => {
+  return {
+    items: state.items,
+    isLoading: state.isLoading,
+  }
+}
 
-// export default connect(mapStateToProps, {fetchItems})(App);
-export default App;
+export default connect(mapStateToProps, {fetchItems})(App);
+// export default App;

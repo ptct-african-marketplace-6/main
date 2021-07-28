@@ -4,10 +4,13 @@ import { fetchItems } from '../common/actions/itemActions'
 import { connect } from "react-redux";
 
 const ItemsList = (props) => {
-  const { items } = props
+  // const { items } = props
   const { pathname } = useLocation()
 
-  // useEffect(() => {props.fetchItems();}, []);
+  const items = props.items;
+  console.log(items);
+  
+  useEffect(() => {props.fetchItems();}, []);
 
   if (props.isLoading) {
     return <><h2>Loading all items...</h2></>
