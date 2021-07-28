@@ -1,4 +1,4 @@
-import { FETCH_ITEMS, ADD_ITEM, EDIT_ITEM, DELETE_ITEM, FETCH_ITEMS_OK, API_START, API_SUCCESS } from "../actions/itemActions"
+import { ADD_ITEM, EDIT_ITEM, DELETE_ITEM, API_START, API_SUCCESS } from "../actions/itemActions"
 
 const initialState = {
   items: [],
@@ -9,7 +9,7 @@ const initialState = {
 export const itemReducer = (state = initialState, action) => {
   switch (action.type) {
     case API_START:
-      return {
+      return {  
         ...state,
         isLoading: true
       }
@@ -45,13 +45,7 @@ export const itemReducer = (state = initialState, action) => {
         
         // This code may need more work ... this is just a templated version to begin with
         ...state.item,
-        item_name: action.payload.item_name,
-        location: action.payload.location,
-        quantity: action.payload.quantity,
-        price: action.payload.price,
-        description: action.payload.description
-        
-        // items: [...state.items, editItem]
+        items: [...state.items, editItem]
       }
     case DELETE_ITEM:
       return {

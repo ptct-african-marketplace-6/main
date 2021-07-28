@@ -16,7 +16,7 @@ import './App.css';
 
 function App(props) {
   const { push } = useHistory();
-  // const [data, setData] = useState([])
+  const [data, setData] = useState([])
 
   // const userInfo = [
   //   {
@@ -28,22 +28,22 @@ function App(props) {
   // ];
 
 
-  useEffect(() => { props.fetchItems(); }, []);
+  // useEffect(() => { props.fetchItems(); }, []);
 
-  console.log(props.items)
+  console.log(data)
 
 
-  // useEffect(() => {
-  //   axiosWithAuth()
-  //     .get('items')
-  //     .then(res => {
-  //       // console.log(res.data);
-  //       setData(res.data)
-  //     })
-  //     .catch(err => {
-  //       console.log(err);
-  //     })
-  // }, []);
+  useEffect(() => {
+    axiosWithAuth()
+      .get('items')
+      .then(res => {
+        // console.log(res.data);
+        setData(res.data)
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  }, []);
   
   if (props.isLoading) {
       return <><h2>Loading items...</h2></>
@@ -84,7 +84,7 @@ function App(props) {
       <div>
         {
           localStorage.getItem('token') && 
-            <InnerNavbar items={props.items}/>
+            <InnerNavbar items={data}/>
         }
       </div>
 
@@ -93,10 +93,10 @@ function App(props) {
           <Home />
         </Route>
         <Route path="/items-list/:itemID">
-          <Item items={props.items}/>
+          <Item items={data}/>
         </Route>
         <Route path='/items-list'>
-          <ItemsList items={props.items} />
+          <ItemsList items={data} />
         </Route>
         <Route path="/item-form">
           <ItemForm />
@@ -112,11 +112,12 @@ function App(props) {
   )
 }
 
-const mapStateToProps = (state) => {
-  return {
-    items: state.items,
-    isLoading: state.isLoading,
-  }
-}
+// const mapStateToProps = (state) => {
+//   return {
+//     items: state.items,
+//     isLoading: state.isLoading,
+//   }
+// }
 
-export default connect(mapStateToProps, {fetchItems})(App);
+// export default connect(mapStateToProps, {fetchItems})(App);
+export default App;
