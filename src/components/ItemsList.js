@@ -21,6 +21,7 @@ const ItemsList = (props) => {
               <p>{item.item_name}</p>
             </Link>
             <p>${item.price}</p>
+            <button className="btn my-3 mx-auto">Add to Cart</button>
           </div>
         ))}
       </div>

@@ -1,41 +1,44 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from "react-redux";
-import { Link, useLocation } from 'react-router-dom'
 import { Container, Card, Row } from 'react-bootstrap';
+import { fetchItems, deleteItem } from '../common/actions/itemActions';
+// import { useHistory } from 'react-router-dom';
 // import axiosWithAuth from '../common/helpers/axiosWithAuth';
-import { fetchItems } from '../common/actions/itemActions';
 
 const UserItems = (props) => {
 const { items } = props;
-const { pathname } = useLocation()
-
-// const [allItems, setAllItems] = useState([]);
+// const { push } = useHistory();
 
 const userName = localStorage.getItem('username');
 const userID = localStorage.getItem("userID");
 
-useEffect(() => { fetchItems(); }, []);
+const filteredUserItems = items.filter(item => (Number(item.user_id) === Number(userID)));
 
-// useEffect(() => {
-//   axiosWithAuth()
-//   // .fetchItems()
-//     .get('items')
-//     .then(res => {
-//       console.log(res.data);
-//       setAllItems(res.data)
-//     })
-//     .catch(err => {
-//       console.log(err);
-//     })
-// }, []);
+// const [userItems, setUserItems] = useState(filteredUserItems);
+
+useEffect(() => { fetchItems(); }, []);
 
 if (props.isLoading) {
     return <><h2>Loading {userName}'s items...</h2></>
 };
-const filteredUserItems = items.filter(item => (Number(item.user_id) === Number(userID)))
+
+
+// setUserItems(filteredUserItems);
+
+// const handleDelete = (item) => {
+//   axiosWithAuth().delete(`items/${item.id}`)
+//     .then(res => {
+//       console.log("item has been deleted:", res.data);
+//       setUserItems(res.data)
+//     push('/user-items')
+//     })
+//     .catch(err => {
+//       console.log({err});
+//     })
+// }
 
 // console.log(allItems);
-// console.log(filteredUserItems);
+// console.log(filteredUserItems[0].id);
 // console.log(userID);
 // console.log(allItems[11].user_id)
 // console.log(isOwner);
@@ -43,25 +46,29 @@ const filteredUserItems = items.filter(item => (Number(item.user_id) === Number(
 
   return (
     <div className="text-center form-wrapper">
-      <Container fluid='sm' 
-      // className="container-fluid items-list-container"
-      className='text-center' 
-      >
-        <h3>Hi {userName}! View your listed items below!</h3>
+      <Container fluid='sm' className='text-center'>
+        <h3>Hi {userID}! View your listed items below!</h3>
           <Row xs lg='2'>
-            {filteredUserItems.map(item => (
-              <div className='text-center'>
+            {filteredUserItems.map((item) => (
+              <div className='text-center' key={item.id}>
                   <Card md="auto" variant="light" bg='light'>
-                  <div className="item-card" key={item.id}>
-                    <Link to={`${pathname}/${item.id}`}>
+                  <div className="item-card">
                       <Card.Header>
-                        <button className='w-100 btn btn-lg btn-warning'><h5>{item.item_name}</h5></button>
+                        <button className="user-item-btn" action="none">
+                          <h5>{item.item_name}</h5>
+                          </button>
                         </Card.Header>
-                    </Link>
-                    <h5>Price:</h5> <p>${item.price}</p>
-                    <h5>Location:</h5> <p>{item.location}</p>
-                    <h5>Quantity:</h5> <p>{item.quantity}</p>
-                    <h5>Description:</h5> <p>{item.description}</p>
+                        <h6>Item ID: {item.id}</h6>
+                    <h6>Price: ${item.price}</h6>
+                    <h6>Location: {item.location}</h6>
+                    <h6>Quantity: {item.quantity}
+                    </h6>
+                    <h6>Description: {item.description}</h6>
+                    <button className="edit-btn my-3 mx-auto">Edit</button>
+                    <button className="delete-btn my-3 mx-auto" key={item.id} onClick={() => props.deleteItem(item)}>
+                    {/* <button className="delete-btn my-3 mx-auto" key={item.id} onClick={handleDelete}>                      */}
+                      Delete</button>
+                    {/* {console.log(item)} */}
                   </div>
                   </Card><br/>
               </div>
@@ -72,12 +79,11 @@ const filteredUserItems = items.filter(item => (Number(item.user_id) === Number(
   )
 }
 
-// const mapStateToProps = (state) => {
-//   return {
-//     items: state.items,
-//     isLoading: state.isLoading,
-//   }
-// }
+const mapStateToProps = (state) => {
+  return {
+    items: state.items,
+    isLoading: state.isLoading,
+  }
+}
 
-// export default connect(mapStateToProps, {fetchItems})(UserItems)
-export default UserItems;
+export default connect(mapStateToProps, {fetchItems, deleteItem})(UserItems)

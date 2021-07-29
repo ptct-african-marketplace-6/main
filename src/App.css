@@ -37,6 +37,49 @@
   border: 1px solid #0A2A58;
 }
 
+.app .user-item-btn {
+  text-decoration: none;
+  font-family: 'Abril Fatface', cursive;
+  color: #0A2A58;
+  font-size: 1.5rem;
+  text-decoration: none;
+  font-weight: 900;
+  background-color: #ffffff;
+  max-width: 300px;
+  width: 100%;
+  border-radius: 25px;
+  border: 1px solid #0A2A58;
+  pointer-events: none;
+}
+
+.app .edit-btn {
+  text-decoration: none;
+  font-family: 'Abril Fatface', cursive;
+  color: #0A2A58;
+  font-size: 1.5rem;
+  text-decoration: none;
+  font-weight: 900;
+  background-color: #fced97;
+  max-width: 300px;
+  width: 100%;
+  border-radius: 25px;
+  border: 1px solid #0A2A58;
+}
+
+.app .delete-btn {
+  text-decoration: none;
+  font-family: 'Abril Fatface', cursive;
+  color: #0A2A58;
+  font-size: 1.5rem;
+  text-decoration: none;
+  font-weight: 900;
+  background-color: #ee8d8d;
+  max-width: 300px;
+  width: 100%;
+  border-radius: 25px;
+  border: 1px solid #0A2A58;
+}
+
 .app .home-wrapper {
   background-image: url("./assets/pink-brick.jpg");
   background-position: center;
