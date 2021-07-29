@@ -16,33 +16,8 @@ import './App.css';
 
 function App(props) {
   const { push } = useHistory();
-  // const [data, setData] = useState([])
-
-  // const userInfo = [
-  //   {
-  //     token: localStorage.getItem("token"),
-  //     userID: localStorage.getItem("userID"),
-  //     isOwner: localStorage.getItem("isOwner"),
-  //     username: localStorage.getItem("username")
-  //   }
-  // ];
-
 
   useEffect(() => { props.fetchItems(); }, []);
-
-  // console.log(data)
-  // console.log(props.items)
-  // useEffect(() => {
-  //   axiosWithAuth()
-  //     .get('items')
-  //     .then(res => {
-  //       // console.log(res.data);
-  //       setData(res.data)
-  //     })
-  //     .catch(err => {
-  //       console.log(err);
-  //     })
-  // }, []);
   
   if (props.isLoading) {
       return <><h2>Loading items...</h2></>
@@ -119,4 +94,3 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps, {fetchItems})(App);
-// export default App;

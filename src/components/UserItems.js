@@ -47,9 +47,15 @@ if (props.isLoading) {
   return (
     <div className="text-center form-wrapper">
       <Container fluid='sm' className='text-center'>
-        <h3>Hi {userID}! View your listed items below!</h3>
+        <h3>Hi {userName}! View your listed items below!</h3>
           <Row xs lg='2'>
-            {filteredUserItems.map((item) => (
+
+          { 
+
+            userID && 
+
+            filteredUserItems.map((item) => (
+
               <div className='text-center' key={item.id}>
                   <Card md="auto" variant="light" bg='light'>
                   <div className="item-card">
@@ -72,7 +78,9 @@ if (props.isLoading) {
                   </div>
                   </Card><br/>
               </div>
-            ))}
+            ))
+            }
+
           </Row>
       </Container>
       </div>
