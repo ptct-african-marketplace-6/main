@@ -34,7 +34,8 @@ const AddItem = () => {
     location: "",
     quantity: "",
     price: "",
-    description: ""
+    description: "",
+    image_url: null
   })
 
   const [errors, setErrors] = useState({

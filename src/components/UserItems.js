@@ -60,6 +60,7 @@ if (props.isLoading) {
                   <Card md="auto" variant="light" bg='light'>
                   <div className="item-card">
                       <Card.Header>
+                        <img className="img-fluid" src={item.image_url} alt={item.name}/>
                         <button className="user-item-btn" action="none">
                           <h5>{item.item_name}</h5>
                           </button>
@@ -71,10 +72,10 @@ if (props.isLoading) {
                     </h6>
                     <h6>Description: {item.description}</h6>
                     <button className="edit-btn my-3 mx-auto">Edit</button>
-                    <button className="delete-btn my-3 mx-auto" key={item.id} onClick={() => props.deleteItem(item)}>
+                    <button className="delete-btn my-3 mx-auto" id={item.id} onClick={() => props.deleteItem(item)}>
                     {/* <button className="delete-btn my-3 mx-auto" key={item.id} onClick={handleDelete}>                      */}
                       Delete</button>
-                    {/* {console.log(item)} */}
+                    {console.log(item)}
                   </div>
                   </Card><br/>
               </div>
