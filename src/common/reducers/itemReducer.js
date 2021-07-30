@@ -45,10 +45,15 @@ const itemReducer = (state = initialState, action) => {
     //             ...state.item,
     //     items: [...state.items, editItem]
     //   }
+    // case DELETE_ITEM:
+    //   return {
+    //     items: state.items.filter(item => (action.payload.id !== item.id))
+    //   }
     case DELETE_ITEM:
       return {
         items: state.items.filter(item => (action.payload.id !== item.id))
       }
+
     default:
       return state;  
   }
