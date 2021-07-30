@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Route, Link, Switch, useHistory } from 'react-router-dom'
+import { Container, Nav, Navbar } from 'react-bootstrap';
 
 import ItemsList from './components/ItemsList'
 import Item from './components/Item'
@@ -56,13 +57,21 @@ function App(props) {
           <div className="col-md-6 col-12">
             <nav>
             <div className="nav-links d-flex flex-column flex-md-row justify-content-evenly align-items-center">
-                <Link to="/" className="py-3 py-md-0">Home</Link>
-                <Link to="/items-list" className="py-3 py-md-0">Shop</Link>
-                {/* <Link to="/item-form" className="py-3 py-md-0">Sell</Link> */}
-                <Link to="/log-in" className="py-3 py-md-0">Log In</Link>
-                <Link to="/sign-up" className="py-3 py-md-0">Sign Up</Link>
-                <Link to="/" className="py-3 py-md-0" onClick={logout}>Logout</Link>
-              </div>
+            <Container fluid='sm' className='text-center'>
+            <Navbar collapseOnSelect expand="sm">
+              <Navbar.Brand className="home-nav-btn py-3 py-md-0" href='/' defaultactivekey="/">HOME</Navbar.Brand>
+              <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
+              <Navbar.Collapse id="responsive-navbar-nav">
+              <Nav className="mr-auto">
+                <Nav.Link className="nav-btn py-3 py-md-0" href='/items-list'>Shop</Nav.Link>
+                <Nav.Link className="nav-btn py-3 py-md-0" href="/log-in">Log In</Nav.Link>
+                <Nav.Link className="nav-btn py-3 py-md-0" href="/sign-up">Sign Up</Nav.Link>
+                <Nav.Link className="nav-btn py-3 py-md-0" href="/" onClick={logout}>Logout</Nav.Link>
+                </Nav>
+              </Navbar.Collapse>
+            </Navbar>
+            </Container>
+            </div>
             </nav>
           </div>
         </div>

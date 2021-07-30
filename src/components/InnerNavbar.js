@@ -14,8 +14,8 @@ export default function InnerNavbar(props) {
   const { items } = props;
 
   return (
-    <div className="App">
-      <Container fluid='sm' className='text-center' >
+    <div className="app inner-nav">
+      <Container fluid='sm' className='text-center'>
         <Navbar collapseOnSelect expand="sm" bg="light" variant="light">
           <Navbar.Brand className="home-nav-btn" href='/user-items' defaultactivekey="/user-items">My Items</Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
