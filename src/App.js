@@ -55,13 +55,13 @@ function App(props) {
           </div>
           <div className="col-md-6 col-12">
             <nav>
-              <div className="nav-links d-flex justify-content-evenly align-items-center">
-                <Link to="/">Home</Link>
-                <Link to="/items-list">Shop</Link>
-                <Link to="/item-form">Sell</Link>
-                <Link to="/log-in">Log In</Link>
-                <Link to="/sign-up">Sign Up</Link>
-                <Link to="/" onClick={logout}>Logout</Link>
+            <div className="nav-links d-flex flex-column flex-md-row justify-content-evenly align-items-center">
+                <Link to="/" className="py-3 py-md-0">Home</Link>
+                <Link to="/items-list" className="py-3 py-md-0">Shop</Link>
+                {/* <Link to="/item-form" className="py-3 py-md-0">Sell</Link> */}
+                <Link to="/log-in" className="py-3 py-md-0">Log In</Link>
+                <Link to="/sign-up" className="py-3 py-md-0">Sign Up</Link>
+                <Link to="/" className="py-3 py-md-0" onClick={logout}>Logout</Link>
               </div>
             </nav>
           </div>
