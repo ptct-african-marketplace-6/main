@@ -23,6 +23,24 @@
   text-transform: uppercase;
 }
 
+.app .inner-nav {
+  font-family: 'Open Sans Condensed', sans-serif;
+  color: #0A2A58;
+  font-size: 1.5rem;
+  text-decoration: none;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.app .nav-links a {
+  font-family: 'Open Sans Condensed', sans-serif;
+  color: #0A2A58;
+  font-size: 1.5rem;
+  text-decoration: none;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
 .app .btn {
   text-decoration: none;
   font-family: 'Abril Fatface', cursive;
