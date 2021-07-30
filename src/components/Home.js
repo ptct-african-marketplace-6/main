@@ -24,7 +24,7 @@ const Home = () => {
 
           <Card md="auto" bg='light'>
               <h4>
-              We specialize in helping those who are underrepresented with the ability to list and sell items online. This allows business owners to reach a wider audience while still remaining in control of their own business.
+              We specialize in helping those who are under-represented with the ability to list and sell items online. This allows business owners to reach a wider audience while still remaining in control of their own business.
               </h4>
           </Card><br/>
           <div>
