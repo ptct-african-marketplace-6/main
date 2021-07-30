@@ -1,27 +1,38 @@
 import React from 'react'
-// import { Container, Card } from 'react-bootstrap';
+import { Container, Card } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom'
 
 const Home = () => {
 
-  const history = useHistory()
+  const { push } = useHistory()
 
   const routeToShop = () => {
-    history.push('/items-list')
+    push('/items-list')
   }
   
+  const routeToSignup = () => {
+    push('/sign-up')
+  }
   return (
     <div className="container-fluid home-wrapper">
-      <div className="row py-5">
-        <div className="col-12 d-flex justify-content-center align-items-center py-5 my-5">
-        <button onClick={routeToShop } className="btn mx-auto">Shop Now!</button>
+        <br/>
+        <Container fluid='sm' className='text-center'>
+          <Card md="auto" bg='light'>
+              <h4>Welcome to Sauti Market, the premier marketplace for new and established small business owners to expand their online presence.
+              </h4>  
+            </Card><br/>
 
-          {/* <p>This is the premier marketplace for new and established small business owners to expand their presence online.</p>
-
-          <p>We specialize in helping small business owners, especially those who are underrepresented, with the ability to list and sell items online. This allows business owners to reach a wider audience while still remaining in control of their own business.</p> */}
-        
-        </div>
-      </div>
+          <Card md="auto" bg='light'>
+              <h4>
+              We specialize in helping those who are underrepresented with the ability to list and sell items online. This allows business owners to reach a wider audience while still remaining in control of their own business.
+              </h4>
+          </Card><br/>
+          <div>
+            <button onClick={routeToSignup} className="btn mx-auto">Sign Up!</button>
+            {' '}{' '}{''}
+            <button onClick={routeToShop } className="btn mx-auto">Shop Now!</button>
+          </div>
+          </Container>
     </div>
   )
 }
