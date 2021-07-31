@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import * as yup from 'yup'
 import '../App.css';
 import axiosWithAuth from '../common/helpers/axiosWithAuth';
@@ -18,7 +18,9 @@ let schema = yup.object().shape({
 })
 
 
-const AddItem = () => {
+const EditItem = (props) => {
+  const { id } = useParams();
+  // const { itemID } = props;
   const { push } = useHistory();
   const userID = localStorage.getItem("userID");
 
@@ -31,6 +33,20 @@ const AddItem = () => {
     image_url: "",
     user_id: userID  
   }
+
+  console.log(id)
+
+  useEffect(() => {
+    axiosWithAuth()
+    .get(`items/${id}`)
+    .then(res => {
+      setForm(res.data)
+    })
+    .catch(err => {
+      console.log({err})
+    })
+  }, [])
+
 
   const [form, setForm] = useState({
     item_name: "",
@@ -71,11 +87,10 @@ const AddItem = () => {
 
   const submit = (e) => {
     e.preventDefault()
-
-    axiosWithAuth().post("https://sauti-market-bw.herokuapp.com/api/items", form)
+    axiosWithAuth.post(`items/${e.id}`, form)
     .then(res => {
-      console.log("body of new item: ", form)
-      console.log("Successfully added new item!");
+      console.log("body of edited item: ", form)
+      console.log("Successfully edited item!");
       console.log(res.data)
       setForm(initialValues)
       push('/user-items');
@@ -94,16 +109,13 @@ const AddItem = () => {
       <main className="form-signin text-center">
         <form className="text-center" onSubmit={submit}>
         <h1 className='h3 mb-3 fw-normal'>
-            Add your new item.
+            Edit your item using the form below!
           </h1>
-        <h1 className='h5 mb-3 fw-normal'>
-          This will be added to the marketplace as your new listing.
-        </h1>
           <br/>
           <h4>Item Name</h4>
           <div className="form-floating">
             <input  
-              placeholder="Item Name"
+              placeholder={form.item_name}
               value={form.item_name} 
               name="item_name" 
               type="text" 
@@ -178,11 +190,11 @@ const AddItem = () => {
               />
           </div>
           <br/>
-          <button className="w-100 btn btn-lg btn-success" disabled={disabled}>Submit</button>
+          <button className="w-100 btn btn-lg btn-success" disabled={disabled}>Submit Changes</button>
         </form>
       </main>
     </div>
   )
 }
 
-export default AddItem;
+export default EditItem;

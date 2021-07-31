@@ -8,7 +8,7 @@ import Item from './components/Item'
 import Home from './components/Home'
 import Login from './components/Login/Login'
 import Signup from './components/Signup/Signup'
-import ItemForm from './components/ItemForm'
+import EditItem from './components/EditItem'
 import InnerNavbar from './components/InnerNavbar';
 import { fetchItems } from './common/actions/itemActions'
 import './App.css';
@@ -80,14 +80,14 @@ function App(props) {
         <Route path='/items-list'>
           <ItemsList items={props.items} />
         </Route>
-        <Route path="/item-form">
-          <ItemForm />
-        </Route>
         <Route path="/log-in">
           <Login />
         </Route>
         <Route path='/sign-up'>
           <Signup />
+        </Route>
+        <Route path="/edit-item">
+          <EditItem />
         </Route>
       </Switch>
     </div>

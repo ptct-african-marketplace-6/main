@@ -51,7 +51,9 @@ const itemReducer = (state = initialState, action) => {
     //   }
     case DELETE_ITEM:
       return {
-        items: state.items.filter(item => (action.payload.id !== item.id))
+        ...state,
+        items: action.payload,
+        isLoading: false
       }
 
     default:

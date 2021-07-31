@@ -31,16 +31,15 @@ export const fetchItems = () => (dispatch) => {
 //   return ({type: EDIT_ITEM, payload: id});
 // }
 
-export const deleteItem = (id) => {
-  return ({type: DELETE_ITEM, payload: id})
-  // dispatch({ type: DELETE_ITEM });
-  // axiosWithAuth().delete(`items/${id}`)
-  //   .then(res => {
-  //     console.log("item has been deleted:", res);
-  //     dispatch({ type: DELETE_ITEM, payload: res.data })
-  //   })
-  //   .catch(err => {
-  //     console.log(err);
-  //     dispatch({ type: API_ERROR, payload: err })
-  //   })
+export const deleteItem = (id) => (dispatch) => {
+  dispatch({ type: DELETE_ITEM });
+  axiosWithAuth().delete(`items/${id}`)
+    .then(res => {
+      console.log("item has been deleted:", res);
+      dispatch({ type: DELETE_ITEM, payload: res.data })
+    })
+    .catch(err => {
+      console.log(err);
+      dispatch({ type: API_ERROR, payload: err })
+    })
 }
