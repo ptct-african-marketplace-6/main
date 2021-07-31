@@ -22,7 +22,7 @@ const ItemsList = (props) => {
             </Link>
             <p>${item.price}</p>
             <button className="btn my-3 mx-auto">Add to Cart</button>
-            {console.log(item)}
+            {/* {console.log(item)} */}
           </div>
         ))}
       </div>

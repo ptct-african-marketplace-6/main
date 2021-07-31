@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { connect } from "react-redux";
+// import { connect } from "react-redux";
 import axiosWithAuth from '../common/helpers/axiosWithAuth';
 import '../App.css';
-import { fetchItems } from '../common/actions/itemActions';
+// import { fetchItems } from '../common/actions/itemActions';
 
 const Item = (props) => {
   const [item, setItem] = useState();
@@ -50,12 +50,12 @@ const Item = (props) => {
   )
 }
 
-const mapStateToProps = (state) => {
-  return {
-    items: state.items,
-    isLoading: state.isLoading,
-  }
-}
+// const mapStateToProps = (state) => {
+//   return {
+//     items: state.items,
+//     isLoading: state.isLoading,
+//   }
+// }
 
 // export default connect(mapStateToProps, {fetchItems})(Item);
 export default Item;

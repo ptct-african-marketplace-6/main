@@ -67,7 +67,7 @@ const handleDelete = (item) => {
                     >Edit</button>
                     <button className="delete-btn my-3 mx-auto" onClick={() => handleDelete(item)}>                     
                       Delete</button>
-                    {console.log(item)}
+                    {/* {console.log(item)} */}
                   </div>
                   </Card><br/>
               </div>
