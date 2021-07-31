@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react'
-import { Route, Link, Switch, useHistory } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { Route, Switch, useHistory } from 'react-router-dom'
+import { connect } from "react-redux";
 import { Container, Nav, Navbar } from 'react-bootstrap';
 
 import ItemsList from './components/ItemsList'
@@ -7,34 +8,17 @@ import Item from './components/Item'
 import Home from './components/Home'
 import Login from './components/Login/Login'
 import Signup from './components/Signup/Signup'
-import ItemForm from './components/ItemForm'
-// import { fetchItems } from './common/actions/itemActions';
-import axiosWithAuth from './common/helpers/axiosWithAuth';
+import EditItem from './components/EditItem'
 import InnerNavbar from './components/InnerNavbar';
-
+import { fetchItems } from './common/actions/itemActions'
 import './App.css';
+
 
 function App(props) {
   const { push } = useHistory();
-  const [data, setData] = useState([])
 
-  // const [user, setUser] = useState([{
-  //   username: localStorage.getItem('username'),
-  //   user_id: localStorage.getItem("userID")
-  // }]);
-
-  useEffect(() => {
-    axiosWithAuth()
-    // .fetchItems() <--- this action needs more work
-      .get('items')
-      .then(res => {
-        // console.log(res.data);
-        setData(res.data)
-      })
-      .catch(err => {
-        console.log(err);
-      })
-  }, []);
+  useEffect(() => { props.fetchItems(); }, []);
+  
   if (props.isLoading) {
       return <><h2>Loading items...</h2></>
   } 
@@ -42,6 +26,8 @@ function App(props) {
   const logout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('username');
+    localStorage.removeItem("userID");
+    localStorage.getItem("isOwner");
     console.log("You have been logged out!");
     alert("You have logged out successfully!");
     push('/');
@@ -80,7 +66,7 @@ function App(props) {
       <div>
         {
           localStorage.getItem('token') && 
-            <InnerNavbar items={data}/>
+            <InnerNavbar items={props.items}/>
         }
       </div>
 
@@ -89,13 +75,10 @@ function App(props) {
           <Home />
         </Route>
         <Route path="/items-list/:itemID">
-          <Item items={data}/>
+          <Item items={props.items}/>
         </Route>
         <Route path='/items-list'>
-          <ItemsList items={data} />
-        </Route>
-        <Route path="/item-form">
-          <ItemForm />
+          <ItemsList items={props.items} />
         </Route>
         <Route path="/log-in">
           <Login />
@@ -103,9 +86,19 @@ function App(props) {
         <Route path='/sign-up'>
           <Signup />
         </Route>
+        <Route path="/edit-item">
+          <EditItem />
+        </Route>
       </Switch>
     </div>
   )
 }
 
-export default App
+const mapStateToProps = (state) => {
+  return {
+    items: state.items,
+    isLoading: state.isLoading,
+  }
+}
+
+export default connect(mapStateToProps, {fetchItems})(App);

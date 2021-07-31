@@ -1,70 +1,90 @@
 import React, { useEffect } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { connect } from "react-redux";
 import { Container, Card, Row } from 'react-bootstrap';
+import { fetchItems, deleteItem } from '../common/actions/itemActions';
+import { useHistory } from 'react-router-dom';
 import axiosWithAuth from '../common/helpers/axiosWithAuth';
 
 const UserItems = (props) => {
-const { items } = props
-const { pathname } = useLocation()
+const { items } = props;
+const { push } = useHistory();
 
-// const initialValues = {
-//   userItems: []
-// }
-
-// const [allItems, setAllItems] = useState('');
-// const [userList, setUserList] = useState(initialValues);
-const userToken = localStorage.getItem('token');
+const routeToEdit = (id) => {
+  push('/edit-item')
+}
 const userName = localStorage.getItem('username');
+const userID = localStorage.getItem("userID");
 
-useEffect(() => {
-  axiosWithAuth()
-  // .fetchItems() <--- this action needs more work
-    .get('items')
-    .then(res => {
-      console.log(res.data);
-      // setAllItems(res.data)
-    })
-    .catch(err => {
-      console.log(err);
-    })
-}, []);
+useEffect(() => { fetchItems(); }, []);
+
+const filteredUserItems = items.filter(item => (Number(item.user_id) === Number(userID)));
+
 if (props.isLoading) {
     return <><h2>Loading {userName}'s items...</h2></>
 };
 
-// need to figure out how to access logged in user's user_id as it does currently return in the login user object from the login call. 
-const filteredItems = items.filter(item => item.user_id === {userToken})
-
-console.log(filteredItems);
-console.log(userToken)
-console.log(items)
+const handleDelete = (item) => {
+  const itemID = Number(item.id)
+  axiosWithAuth().delete(`items/${itemID}`)
+    .then(res => {
+      console.log("item has been deleted:", res.data);
+      fetchItems();
+    push('/user-items')
+    })
+    .catch(err => {
+      console.log({err});
+    })
+}
 
   return (
-      <Container fluid='sm' className='text-center' >
-        <h3>Hi {userName}! View items below!</h3>
+    <div className="text-center form-wrapper">
+      <Container fluid='sm' className='text-center'>
+        <h3>Hi {userName}! View your listed items below!</h3>
           <Row xs lg='2'>
-            {items.map(item => (
-              <div className='text-center'>
-                  <Card md="auto" variant="light" bg='light'>
-                  <div className="item-card" key={item.id}>
-                    <Link to={`${pathname}/${item.id}`}>
 
-                      {/* <img className="img-fluid" src={item.imageURL} alt={item.name}/> */}
+          { 
+
+            userID && 
+
+            filteredUserItems.map((item) => (
+              <div className='text-center' key={item.id}>
+                  <Card md="auto" variant="light" bg='light' key={item.id}>
+                  <div className="item-card" key={item.id}>
                       <Card.Header>
-                        <button className='w-100 btn btn-lg btn-warning'><h5>{item.item_name}</h5></button>
+                        <img className="img-fluid" src={item.image_url} alt={item.name}/>
+                        <button className="user-item-btn" action="none">
+                          <h5>{item.item_name}</h5>
+                          </button>
                         </Card.Header>
-                    </Link>
-                    <h5>Price:</h5> <p>${item.price}</p>
-                    <h5>Location:</h5> <p>{item.location}</p>
-                    <h5>Quantity:</h5> <p>{item.quantity}</p>
-                    <h5>Description:</h5> <p>{item.description}</p>
+                        <h6>Item ID: {item.id}</h6>
+                    <h6>Price: ${item.price}</h6>
+                    <h6>Location: {item.location}</h6>
+                    <h6>Quantity: {item.quantity}
+                    </h6>
+                    <h6>Description: {item.description}</h6>
+                    <button className="edit-btn my-3 mx-auto" 
+                    onClick={routeToEdit}
+                    >Edit</button>
+                    <button className="delete-btn my-3 mx-auto" onClick={() => handleDelete(item)}>                     
+                      Delete</button>
+                    {console.log(item)}
                   </div>
                   </Card><br/>
               </div>
-            ))}
+            ))
+            }
+
           </Row>
       </Container>
+      </div>
   )
 }
 
-export default UserItems
+const mapStateToProps = (state) => {
+  return {
+    items: state.items,
+    isLoading: state.isLoading,
+  }
+}
+
+export default connect(mapStateToProps, {fetchItems, deleteItem})(UserItems);

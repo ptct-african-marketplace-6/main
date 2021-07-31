@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import { connect } from "react-redux";
 import axiosWithAuth from '../common/helpers/axiosWithAuth';
-
 import '../App.css';
+import { fetchItems } from '../common/actions/itemActions';
 
 const Item = (props) => {
   const [item, setItem] = useState();
   const { itemID } = useParams()
+  // const { items } = props;
+
+  // useEffect(() => { fetchItems(); }, []);
 
   useEffect(() => {
     axiosWithAuth()
@@ -21,8 +25,14 @@ const Item = (props) => {
   }, [itemID])
 
   if(!item) return <div><br/>Loading Item Details...</div>
+  // if(props.isLoading) return <div><br/>Loading Item Details...</div>
+
+  // const selectedItem = items.filter(item => (Number(item.id) === Number(itemID)))
+
 
   const { item_name, price, location, quantity, description } = item;
+  
+  console.log(item)
   
   return (
     <div className="container-fluid items-list-container">
@@ -40,4 +50,12 @@ const Item = (props) => {
   )
 }
 
-export default Item 
+const mapStateToProps = (state) => {
+  return {
+    items: state.items,
+    isLoading: state.isLoading,
+  }
+}
+
+// export default connect(mapStateToProps, {fetchItems})(Item);
+export default Item;
