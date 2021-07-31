@@ -14,7 +14,8 @@ let schema = yup.object().shape({
     "number field must have 2 digits after decimal or less",
     (number) => /^\d+(\.\d{1,2})?$/.test(number)
   ).required('item price is required'),
-  description: yup.string().required('item description is required')
+  description: yup.string().required('item description is required'),
+  image_url: yup.string().required('item image URL is required') 
 })
 
 
@@ -28,6 +29,7 @@ const AddItem = () => {
     quantity: "",
     price: "",
     description: "",
+    image_url: "",
     user_id: userID  
   }
 
@@ -37,6 +39,7 @@ const AddItem = () => {
     quantity: "",
     price: "",
     description: "",
+    image_url: "",
     user_id: userID
   })
 
@@ -45,7 +48,8 @@ const AddItem = () => {
       location: "",
       quantity: "",
       price: "",
-      description: ""
+      description: "",
+      image_url: ""
   })
 
   const setFormErrors = (name, value) => {
@@ -97,8 +101,10 @@ const AddItem = () => {
           This will be added to the marketplace as your new listing.
         </h1>
           <br/>
+          <h4>Item Name</h4>
           <div className="form-floating">
-            <input 
+            <input  
+              placeholder="Item Name"
               value={form.item_name} 
               name="item_name" 
               type="text" 
@@ -106,12 +112,12 @@ const AddItem = () => {
               id="floatingInput"
               onChange={handleChange}
             />
-          <label htmlFor="floatingInput">Item Name</label>
           </div>
           <br/>
-
+          <h4>Location</h4>
           <div className="form-floating">
             <input 
+              placeholder="Location"
               value={form.location} 
               name="location" 
               type="text" 
@@ -119,12 +125,12 @@ const AddItem = () => {
               id="floatingInput"
               onChange={handleChange}
             />
-          <label htmlFor="floatingInput">Location</label>
           </div>          
           <br/>
-
+          <h4>Quantity</h4>
           <div className="form-floating">
             <input 
+              placeholder="Quantity"
               value={form.quantity} 
               name="quantity" 
               type="text" 
@@ -132,12 +138,12 @@ const AddItem = () => {
               id="floatingInput"
               onChange={handleChange}
             />
-          <label htmlFor="floatingInput">Quantity</label>
           </div>
           <br/>
-
+          <h4>Price</h4>
           <div className="form-floating">
             <input 
+              placeholder="Price"
               value={form.price} 
               name="price" 
               type="text" 
@@ -145,12 +151,12 @@ const AddItem = () => {
               id="floatingInput"
               onChange={handleChange}
             />
-          <label htmlFor="floatingInput">Price</label>
           </div>
           <br/>
-
+          <h4>Description</h4>
           <div className="form-floating">
             <input 
+              placeholder="Description"
               value={form.description} 
               name="description" 
               type="text" 
@@ -158,7 +164,19 @@ const AddItem = () => {
               id="floatingInput"
               onChange={handleChange}
               />
-          <label htmlFor="floatingInput">Description</label>
+          </div>
+          <br/>
+          <h4>Product Image URL</h4>
+          <div className="form-floating">
+            <input 
+              placeholder="Product Image URL"
+              value={form.image_url} 
+              name="image_url" 
+              type="text" 
+              className="form-control"
+              id="floatingInput"
+              onChange={handleChange}
+              />
           </div>
           <br/>
           <button className="w-100 btn btn-lg btn-success" disabled={disabled}>Submit</button>

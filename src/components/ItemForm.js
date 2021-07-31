@@ -105,6 +105,9 @@ const AddItem = () => {
             <label className="py-2" htmlFor="description">Description</label>
             <input value={form.description} name="description" type="description" onChange={handleChange}/>
 
+            <label className="py-2" htmlFor="image_url">Product Image URL</label>
+            <input value={form.image_url} name="image_url" type="image_url" onChange={handleChange}/>
+
             <button className="btn my-3 mx-auto" disabled={disabled}>Submit</button>
 
           </form>
