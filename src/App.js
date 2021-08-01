@@ -20,7 +20,7 @@ function App(props) {
   useEffect(() => { props.fetchItems(); }, []);
   
   if (props.isLoading) {
-      return <><h2>Loading items...</h2></>
+      return <><h2>Loading Marketplace...</h2></>
   } 
 
   const logout = () => {
@@ -38,7 +38,7 @@ function App(props) {
       <div className="container-fluid">
         <div className="row d-flex align-items-center">
           <div className="col-md-6 col-12 title-container">
-            <h1>Market Place</h1>
+            <h1>Sauti Market Place</h1>
           </div>
           <div className="col-md-6 col-12">
             <nav>
