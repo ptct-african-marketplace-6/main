@@ -17,8 +17,8 @@ const Help = () => {
               No obstacle is too big or too small; we are here to help you expand your business. Don't hesitate to reach out to us using the contact form below. We will have one of our knowledgeable staff members reach out to you for assistance shortly!
             </Card.Body>
           </div>
-          {/* </Card>
-          <Card> */}
+
+
           <div className='text-center'>
             <div className='form-signin'>
               <br/>

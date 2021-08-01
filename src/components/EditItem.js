@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import * as yup from 'yup'
 import '../App.css';
 import axiosWithAuth from '../common/helpers/axiosWithAuth';
@@ -19,12 +19,9 @@ let schema = yup.object().shape({
 
 
 const EditItem = (props) => {
-  // const { id } = useParams();
-  const { item } = props;
   const { push } = useHistory();
   const userID = localStorage.getItem("userID");
   const itemID = localStorage.getItem("itemID");
-  // const itemID = item.id;
 
   const initialValues = {
     item_name: "",
@@ -37,7 +34,8 @@ const EditItem = (props) => {
     user_id: userID  
   }
 
-  console.log(itemID)
+  // console log to verify that itemID stored locally
+  // console.log(itemID)
 
   useEffect(() => {
     axiosWithAuth()
@@ -111,7 +109,6 @@ const EditItem = (props) => {
 
   return (
     <div className="text-center">
-      {/* <main className="form-signin text-center"> */}
         <form className="text-center" onSubmit={submit}>
         <h1 className='h3 mb-3 fw-normal'>
             Edit your item using the form below!
@@ -197,7 +194,6 @@ const EditItem = (props) => {
           <br/>
           <button className="w-100 btn btn-lg btn-success" disabled={disabled}>Submit Changes</button>
         </form>
-      {/* </main> */}
     </div>
   )
 }

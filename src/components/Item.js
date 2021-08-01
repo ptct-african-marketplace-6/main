@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
 // import { connect } from "react-redux";
 import axiosWithAuth from '../common/helpers/axiosWithAuth';
 import '../App.css';
@@ -8,10 +8,11 @@ import '../App.css';
 const Item = (props) => {
   const [item, setItem] = useState();
   const { itemID } = useParams()
-  // const { items } = props;
+  const { push } = useHistory();
 
-  // useEffect(() => { fetchItems(); }, []);
-
+  const routeToShop = () => {
+    push('/items-list')
+  }
   useEffect(() => {
     axiosWithAuth()
       .get(`items/${itemID}`)
@@ -25,10 +26,6 @@ const Item = (props) => {
   }, [itemID])
 
   if(!item) return <div><br/>Loading Item Details...</div>
-  // if(props.isLoading) return <div><br/>Loading Item Details...</div>
-
-  // const selectedItem = items.filter(item => (Number(item.id) === Number(itemID)))
-
 
   const { item_name, price, location, quantity, description } = item;
   
@@ -44,18 +41,11 @@ const Item = (props) => {
           <p>Quantity: {quantity}</p>
           <p>Description: {description}</p>
           <button className="btn my-3 mx-auto">Add to Cart</button>
+          <button onClick={routeToShop} className="btn my-3 mx-auto">Back to Shop!</button>
         </div>
       </div>
     </div>
   )
 }
 
-// const mapStateToProps = (state) => {
-//   return {
-//     items: state.items,
-//     isLoading: state.isLoading,
-//   }
-// }
-
-// export default connect(mapStateToProps, {fetchItems})(Item);
 export default Item;

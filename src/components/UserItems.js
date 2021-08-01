@@ -4,7 +4,6 @@ import { Container, Card, Row } from 'react-bootstrap';
 import { fetchItems, deleteItem } from '../common/actions/itemActions';
 import { useHistory } from 'react-router-dom';
 import axiosWithAuth from '../common/helpers/axiosWithAuth';
-import { Link } from '@material-ui/core';
 import EditItem from './EditItem';
 
 const UserItems = (props) => {
@@ -12,10 +11,6 @@ const { items } = props;
 const { push } = useHistory();
 
 const [editMode, setEditMode] = useState(false);
-
-// const routeToEdit = (item) => {
-//   push('/edit-item')
-// }
 
 const toggleEdit = () => {
   setEditMode(!editMode);
@@ -47,8 +42,8 @@ const handleDelete = (item) => {
 
   return (
     <div className="text-center form-wrapper">
-      <Container fluid='sm' className='text-center'>
-        <h3>Hi {userName}! View your listed items below!</h3>
+      <Container fluid='sm' className='text-center'><br/>
+        <h3>Hi {userName}! View your listed items below!</h3><br/>
           <Row xs lg='2'>
 
           { 
