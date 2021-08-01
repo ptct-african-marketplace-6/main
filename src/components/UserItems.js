@@ -1,16 +1,25 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { connect } from "react-redux";
 import { Container, Card, Row } from 'react-bootstrap';
 import { fetchItems, deleteItem } from '../common/actions/itemActions';
 import { useHistory } from 'react-router-dom';
 import axiosWithAuth from '../common/helpers/axiosWithAuth';
+import { Link } from '@material-ui/core';
+import EditItem from './EditItem';
 
 const UserItems = (props) => {
 const { items } = props;
 const { push } = useHistory();
 
-const routeToEdit = (id) => {
-  push('/edit-item')
+const [editMode, setEditMode] = useState(false);
+
+// const routeToEdit = (item) => {
+//   push('/edit-item')
+// }
+
+const toggleEdit = () => {
+  setEditMode(!editMode);
+  console.log(editMode);
 }
 const userName = localStorage.getItem('username');
 const userID = localStorage.getItem("userID");
@@ -63,15 +72,22 @@ const handleDelete = (item) => {
                     </h6>
                     <h6>Description: {item.description}</h6>
                     <button className="edit-btn my-3 mx-auto" 
-                    onClick={routeToEdit}
-                    >Edit</button>
-                    <button className="delete-btn my-3 mx-auto" onClick={() => handleDelete(item)}>                     
-                      Delete</button>
-                    {/* {console.log(item)} */}
+                    onClick={toggleEdit}>Edit</button>
+                    <button className="delete-btn my-3 mx-auto" onClick={() => handleDelete(item)}>Delete</button>
+                    {console.log(item)}
                   </div>
                   </Card><br/>
               </div>
             ))
+            }
+
+            {
+              editMode && 
+              <Card md="auto" variant="light" bg='light'>
+                <div className="item-card">
+                  <EditItem />
+                </div>
+              </Card>
             }
 
           </Row>

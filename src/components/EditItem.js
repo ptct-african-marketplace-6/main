@@ -19,10 +19,12 @@ let schema = yup.object().shape({
 
 
 const EditItem = (props) => {
-  const { id } = useParams();
-  // const { itemID } = props;
+  // const { id } = useParams();
+  const { item } = props;
   const { push } = useHistory();
   const userID = localStorage.getItem("userID");
+  const itemID = localStorage.getItem("itemID");
+  // const itemID = item.id;
 
   const initialValues = {
     item_name: "",
@@ -31,21 +33,22 @@ const EditItem = (props) => {
     price: "",
     description: "",
     image_url: "",
+    id: itemID,
     user_id: userID  
   }
 
-  console.log(id)
+  console.log(itemID)
 
   useEffect(() => {
     axiosWithAuth()
-    .get(`items/${id}`)
+    .get(`items/${itemID}`)
     .then(res => {
       setForm(res.data)
     })
     .catch(err => {
       console.log({err})
     })
-  }, [])
+  }, [itemID])
 
 
   const [form, setForm] = useState({
@@ -55,6 +58,7 @@ const EditItem = (props) => {
     price: "",
     description: "",
     image_url: "",
+    id: itemID,
     user_id: userID
   })
 
@@ -87,12 +91,13 @@ const EditItem = (props) => {
 
   const submit = (e) => {
     e.preventDefault()
-    axiosWithAuth.post(`items/${e.id}`, form)
+    axiosWithAuth().put(`items/${itemID}`, form)
     .then(res => {
       console.log("body of edited item: ", form)
       console.log("Successfully edited item!");
       console.log(res.data)
       setForm(initialValues)
+      
       push('/user-items');
     })
     .catch((err) => {
@@ -105,8 +110,8 @@ const EditItem = (props) => {
   }, [form])
 
   return (
-    <div className="text-center form-wrapper">
-      <main className="form-signin text-center">
+    <div className="text-center">
+      {/* <main className="form-signin text-center"> */}
         <form className="text-center" onSubmit={submit}>
         <h1 className='h3 mb-3 fw-normal'>
             Edit your item using the form below!
@@ -192,7 +197,7 @@ const EditItem = (props) => {
           <br/>
           <button className="w-100 btn btn-lg btn-success" disabled={disabled}>Submit Changes</button>
         </form>
-      </main>
+      {/* </main> */}
     </div>
   )
 }
