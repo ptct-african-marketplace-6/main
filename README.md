@@ -2,17 +2,18 @@
 
 ## Instructions
 
-### Task 1: Project Setup for work on specific/individual feature branches
+### Project Setup for work on specific/individual feature branches
 
 * [] Clone this repository.
 - [] Create a new branch for the feature you are working on: git checkout -b `<feature-name>`.
 - [] Implement your code on your newly created `<feature-name>` branch, committing changes regularly.
 - [] Push commits: git push origin `<feature-name>`.
-* [] **RUN** `npm start` to start your application.
+* [] **RUN** `npm start` to start your application in development mode. If your code editor is not already pre-configured to do so, you will need to open `http://localhost:5500` in your browser.
 
 ### Reference Materials
 
-Sauti Market is an ecommerce app designed for users (small business owners) to be able to sign up and list their items for sale. Currently, users are able to login as either owners or regular users (non-owners); users are able to list items for sale, which appear in the component titled "Shop." Users are also able to delete listed items, with 'Edit' functionality code written but not yet completed.
+Sauti Market is an ecommerce app designed for users (small business owners) to be able to sign up and list their items for sale. Currently, users are able to login as either owners or regular users (non-owners); users are able to list items for sale, which appear in the component titled "Shop." Users are also able to edit and delete listed items.
+
 
 #### API Documentation and Endpoints
 
